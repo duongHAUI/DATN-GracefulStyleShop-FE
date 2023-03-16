@@ -1,0 +1,11 @@
+
+:root{
+    --color-header : #fff;
+    --color-footer : #ed6464;
+    --color-text-grey : #4a4a4a;
+    --font-size-default : 12px;
+    --padding-beside : 120px;
+    --height-header : 70px;
+    --background-color-body : #d4d3d35b;
+    --background-color-header : #fff;
+}

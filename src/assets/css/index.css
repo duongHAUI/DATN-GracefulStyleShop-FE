@@ -1,6 +1,7 @@
-@import '_variable.scss';
-@import 'components/header.scss';
-@import 'components/icon.scss';
+@import url(./_variable.css);
+@import url(./components/icon.css);
+@import url(./components/header.css);
+@import url(./components/product-cart.css);
 
 @font-face {
   font-family: GoogleSans-Regular;
@@ -27,9 +28,10 @@
 
 body {
   font-family: GoogleSans-Regular;
-  font-size: $font-size-default;
+  font-size: var(--font-size-default);
   width: 100%;
   position: relative;
+  background-color: var(--background-color-body);
 }
 
 img{

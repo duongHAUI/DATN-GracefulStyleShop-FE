@@ -3,15 +3,15 @@
 </template>
 
 <script>
-import MainLayout from './layout/MainLayout.vue'
+import MainLayout from './layout/MainLayout.vue';
 export default {
   name: 'App',
   components: {
-    MainLayout
+    MainLayout,
   }
 }
 </script>
 
 <style lang="scss">
-@import url(./assets/scss/index.scss);
+@import url(./assets/css/index.css);
 </style>
