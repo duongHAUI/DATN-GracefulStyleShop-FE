@@ -1,4 +1,4 @@
-import Thehome from "@/views/TheHome.vue"
+import Thehome from "@/views/home/TheHome.vue"
 
 
 /**
