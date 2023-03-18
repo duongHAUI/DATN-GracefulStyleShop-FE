@@ -1,10 +1,13 @@
+import Thehome from "@/views/TheHome.vue"
+
+
 /**
  * Các routes của page
  */
 const routes = [
   {
     path: "",
-    component: '',
+    component:Thehome,
  }
 ];
 

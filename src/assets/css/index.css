@@ -2,7 +2,9 @@
 @import url(./components/icon.css);
 @import url(./components/header.css);
 @import url(./components/product-cart.css);
-
+@import url(./components/slide-card.css);
+@import url(./components/footer.css);
+@import url(./components/home.css);
 @font-face {
   font-family: GoogleSans-Regular;
   src: url(../fonts/notosans-regular.2cb88a13.woff2);
@@ -33,57 +35,59 @@ body {
   position: relative;
   background-color: var(--background-color-body);
 }
+.m-main-content{
+  padding: 0px var(--padding-beside);
+}
+img {
+  height: 100%;
+  width: 100%;
+}
+li {
+  list-style-type: none;
+}
+/* Scroll style */
+::-webkit-scrollbar {
+  width: 3px;
+  height: 7px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
 
-img{
-    height: 100%;
-    width: 100%;
-  }
-  li {
-    list-style-type: none;
-  }
-  /* Scroll style */
-  ::-webkit-scrollbar {
-    width: 3px;
-    height: 7px;
-  }
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
-  
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 10px;
-    cursor: pointer !important;
-  }
-  /* Hiển thị quá dòng thì ... */
-  .truncate {
-    white-space: nowrap; /* ngăn chặn các từ xuống dòng */
-    overflow: hidden; /* ẩn nội dung dài */
-    text-overflow: ellipsis; /* hiển thị dấu "..." khi nội dung quá dài */
-  }
-  
-  .truncate_two-row{
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;  
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #555;
-    cursor: pointer !important;
-  }
-  /* Firefox */
-  input[type="number"] {
-    -moz-appearance: textfield;
-  }
-  input[type=number]::-webkit-inner-spin-button, 
-  input[type=number]::-webkit-outer-spin-button { 
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
-      margin: 0; 
-  }
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+  cursor: pointer !important;
+}
+/* Hiển thị quá dòng thì ... */
+.truncate {
+  white-space: nowrap; /* ngăn chặn các từ xuống dòng */
+  overflow: hidden; /* ẩn nội dung dài */
+  text-overflow: ellipsis; /* hiển thị dấu "..." khi nội dung quá dài */
+}
+
+.truncate_two-row {
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+  cursor: pointer !important;
+}
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
