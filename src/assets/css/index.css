@@ -5,6 +5,7 @@
 @import url(./components/slide-card.css);
 @import url(./components/footer.css);
 @import url(./components/home.css);
+@import url(./components/product-detail.css);
 @font-face {
   font-family: GoogleSans-Regular;
   src: url(../fonts/notosans-regular.2cb88a13.woff2);
@@ -33,7 +34,7 @@ body {
   font-size: var(--font-size-default);
   width: 100%;
   position: relative;
-  background-color: var(--background-color-body);
+  background-color: var(--background-color-body) !important;
 }
 .m-main-content{
   padding: 0px var(--padding-beside);
@@ -41,10 +42,28 @@ body {
 img {
   height: 100%;
   width: 100%;
-  object-fit: contain;
+  object-fit: cover;
 }
 li {
   list-style-type: none;
+}
+.m-t-16{
+  margin-top: 16px;
+}
+.m-t-12{
+  margin-top: 12px;
+}
+.m-t-8{
+  margin-top: 8px;
+}
+.m-t-20{
+  margin-top: 20px;
+}
+.m-tb-16{
+  margin: 16px 0;;
+}
+.text-center{
+  text-align: center;
 }
 /* Scroll style */
 ::-webkit-scrollbar {
@@ -70,8 +89,9 @@ li {
 }
 
 .truncate_two-row {
+  display: -webkit-box;
   -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+  -webkit-box-orient: vertical;  
   overflow: hidden;
   text-overflow: ellipsis;
 }

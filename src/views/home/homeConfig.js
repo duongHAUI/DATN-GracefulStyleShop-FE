@@ -114,6 +114,24 @@ class config {
           number_mass: 30,
         },
       ];
+      this.breakpointsProducts = { 
+        0 :{
+        itemsToShow: 1,
+        },
+        747 :{
+          itemsToShow: 2,
+        },
+        975 :{
+          itemsToShow: 3,
+        },
+        // 1024 and up
+        1200: {
+          itemsToShow: 4,
+        },
+        1406: {
+          itemsToShow: 5,
+        },
+      };
     this.settingsProduct = {
         itemsToShow: 5,
         wrapAround: true,

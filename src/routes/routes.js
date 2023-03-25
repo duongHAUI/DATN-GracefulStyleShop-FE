@@ -1,4 +1,5 @@
-import Thehome from "@/views/home/TheHome.vue"
+import Thehome from "@/views/home/TheHome.vue";
+import ProductDetail from "@/views/product/ProductDetail.vue";
 
 
 /**
@@ -8,6 +9,9 @@ const routes = [
   {
     path: "",
     component:Thehome,
+ },{
+  path: "/products",
+    component:ProductDetail,
  }
 ];
 

@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <div class="logo">
-      <img src="../assets/img/logo.webp" alt="" />
+      <a href="/"><img src="../assets/img/logo.webp" alt="" /></a>
     </div>
     <div class="menu">
       <li class="menu-item">Nam</li>
