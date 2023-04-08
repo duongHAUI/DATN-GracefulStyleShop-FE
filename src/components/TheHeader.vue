@@ -27,7 +27,9 @@
           </svg>
         </div>
         <div class="account">Tài khoản</div>
+        <site-account />
       </div>
+       <router-link to="/cart">
       <div class="action_cart">
         <div class="hd-icon">
           <svg
@@ -48,15 +50,20 @@
           </svg>
           <div class="number-pro">1</div>
         </div>
-        <div class="hd-card">Tài khoản</div>
+        <div class="hd-card">Giỏ hàng</div>
       </div>
+      </router-link>
     </div>
   </header>
 </template>
 
 <script>
+import SiteAccount from './SiteAccount.vue';
 export default {
   name: "TheFooter",
+  components:{
+    SiteAccount
+  }
 };
 </script>
 

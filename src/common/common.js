@@ -1,4 +1,6 @@
 import msEnum from "./enum";
+import resources from "./resource";
+import constants from "./constants";
 
 msEnum
 const common = {
@@ -12,7 +14,54 @@ const common = {
             case msEnum.enumColor.blue : return 'blue';
             case msEnum.enumColor.white : return 'white';
         }
+    },
+    /**
+   * Hàm validate input
+   * Author : NVDuong (10/1/2023)
+   */
+  inputValidation: (rules, name, value) => {
+    const FORM_FIELD = resources.vi.FORM_FIELD;
+    const { NOT_EMPTY, UNIQUE, ADULT, HAS_FORMAT, MAX_LENGTH } =
+      resources.FORM_RULES;
+    const ERROR = resources.vi.FORM_MESSAGE.ERROR;
+    const regexConstants = constants.regexConstants;
+    for (const rule of rules) {
+      var arrRule = rule.split("|");
+      var nameRule = arrRule[0];
+      var keyRule = arrRule[1];
+      switch (nameRule) {
+        case NOT_EMPTY: {
+          if (!value) return ERROR[nameRule](FORM_FIELD[name]);
+          break;
+        }
+        case UNIQUE: {
+          break;
+        }
+        case ADULT: {
+          if (value) {
+            const date = new Date(value).getTime();
+            const dateNow = new Date().getTime();
+            if (date > dateNow) {
+              return ERROR[nameRule](FORM_FIELD[name]);
+            }
+          }
+          break;
+        }
+        case HAS_FORMAT: {
+          if (value && !regexConstants[name].test(value))
+            return ERROR[nameRule](FORM_FIELD[name]);
+          break;
+        }
+        case MAX_LENGTH: {
+          if (value && value.length > keyRule)
+            return ERROR[nameRule](FORM_FIELD[name], keyRule);
+          break;
+        }
+        default:
+          break;
+      }
     }
+  },
 }
 
 export default common;

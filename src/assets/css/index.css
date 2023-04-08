@@ -6,6 +6,10 @@
 @import url(./components/footer.css);
 @import url(./components/home.css);
 @import url(./components/product-detail.css);
+@import url(./components/cart.css);
+@import url(./components/site-account.css);
+
+
 @font-face {
   font-family: GoogleSans-Regular;
   src: url(../fonts/notosans-regular.2cb88a13.woff2);
