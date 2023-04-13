@@ -73,6 +73,10 @@ export default {
   font-size: 12px;
   color: #677279;
 }
+.m-input:focus{
+  border: unset !important;
+  padding: unset;
+}
 .lable-small {
   font-size: 10px !important;
   margin-top: -8px;

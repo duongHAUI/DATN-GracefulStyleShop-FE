@@ -10,6 +10,8 @@ const state = reactive({
    * Author : NVDuong (10/1/2023)
    */
   toastMessage: [],
+
+  accountLogin : false,
   /**
    * Biến to nhỏ Sidebar
    * Author : NVDuong (10/1/2023)

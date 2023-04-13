@@ -1,39 +1,60 @@
 <template>
-    <button class="m-button" :style="{backgroundColor,borderColor,margin,padding,color}" @click="click">
-        <div :class="icon" v-if="icon"></div>
-        <slot />
-    </button>
+  <button 
+    class="m-btn"
+    :tabindex="tabIndex"
+    :name="name"
+    :data-tip="dataTip"
+    :ref="name"
+    :style="{ 
+        width: width, 
+        height: height, 
+        backgroundColor: backgroundColor,
+        color : color ,
+        padding: padding ,
+        margin: margin,
+        border : border
+    }"
+    :class="{close : typeBtn === 'close',delete :  typeBtn === 'delete','disabled-btn' :disabled }"
+    @click="onClick"
+    >
+    <slot />
+  </button>
 </template>
 <script>
 export default {
-    name:"MButton",
-    emits:["click"],
-    props:{
-        color: String,
-        backgroundColor: String,
-        borderColor: String,
-        padding: String,
-        margin: String,
-        backgroundColorHover: String,
-        icon:String
+  name: "MButton",
+  emits:["click"],
+  props: {
+    text: String,
+    height: Number,
+    width: Number,
+    backgroundColor: String,
+    color : String,
+    padding : String,
+    border: String,
+    typeBtn: String,
+    margin : String,
+    disabled : Boolean,
+    tabIndex : Number,
+    name : String,
+    dataTip:String,
+  },methods:{
+    /**
+     * Hàm xử lý sự kiện click
+     */ 
+    onClick(event){
+      this.$emit("click",event);
     },
-    data() {
-        return {
-        }
+    /**
+     * Hàm xử lý sự kiện focus
+     */ 
+    onFocus() {
+      this.$refs[this.name].focus();
     },
-    methods:{
-        click(e){
-            this.$emit("click",e);
-        }
-    }
-}
+  }
+};
 </script>
 <style scoped>
-.m-button{
-    background-color: var(--color-btn-primary);
-    color: white;
-    width: 100%;
-    height: var(--height-default);
-    border-radius: 2px;
-}
+
+@import url(./button.css);
 </style>

@@ -14,7 +14,7 @@
         <div class="icon icon-search"></div>
       </div>
       <div class="action_setting">
-        <div class="hd-icon">
+        <div class="hd-icon" @click="$state.accountLogin = !$state.accountLogin">
           <svg class="svg-ico-account" viewBox="0 0 1024 1024">
             <path
               class="path1"

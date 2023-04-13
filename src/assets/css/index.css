@@ -69,6 +69,11 @@ li {
 .text-center{
   text-align: center;
 }
+.m-f-bw{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 /* Scroll style */
 ::-webkit-scrollbar {
   width: 3px;

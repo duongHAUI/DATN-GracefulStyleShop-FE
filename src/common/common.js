@@ -16,6 +16,29 @@ const common = {
         }
     },
     /**
+   * Format date (DD/MM/YYYY)
+   */
+  formatDate(dateTime){
+    try {
+      if (dateTime) {
+        dateTime = new Date(dateTime);
+        let date =
+          dateTime.getDate() < 10
+            ? "0" + dateTime.getDate()
+            : dateTime.getDate();
+        let month =
+          dateTime.getMonth() < 9
+            ? `0${dateTime.getMonth() + 1}`
+            : dateTime.getMonth() + 1;
+        let year = dateTime.getFullYear();
+        return `${date}/${month}/${year}`;
+      }
+      return "";
+    } catch (error) {
+      return "";
+    }
+  },
+    /**
    * Hàm validate input
    * Author : NVDuong (10/1/2023)
    */
