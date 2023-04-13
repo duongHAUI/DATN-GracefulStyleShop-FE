@@ -40,7 +40,6 @@ const common = {
   },
     /**
    * Hàm validate input
-   * Author : NVDuong (10/1/2023)
    */
   inputValidation: (rules, name, value) => {
     const FORM_FIELD = resources.vi.FORM_FIELD;

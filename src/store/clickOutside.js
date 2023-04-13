@@ -1,6 +1,5 @@
 /**
  * Xử lý click outside
- * CreatedBy: NVDuong(24/2/2023)
  */
 export default {
   mounted(el, binding) {
