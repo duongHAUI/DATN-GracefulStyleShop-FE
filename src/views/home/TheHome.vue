@@ -105,6 +105,7 @@ import homeConfig from "./homeConfig";
 import ProductCard from "@/components/ProductCard.vue";
 import { VBtn } from "vuetify/lib/components";
 import NewsItem from '@/components/NewsItem.vue';
+import baseApi from '@/api/baseApi';
 export default {
   name: "TheHome",
   components: {
@@ -113,6 +114,11 @@ export default {
     ProductCard,
     VBtn,
     NewsItem
+  },
+  created: async function() {
+    this.config.product = await (await new baseApi("Product").getByFilter({})).Data;
+    // eslint-disable-next-line no-debugger
+    debugger
   },
   data() {
     return {

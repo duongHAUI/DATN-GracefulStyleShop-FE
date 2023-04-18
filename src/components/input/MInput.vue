@@ -28,9 +28,9 @@
         :readonly="isReadonly"
         @input="changeValue($event)"
         :name="name"
-        autocomplete="off"
         :tabindex="tabIndex"
       />
+        <!-- autocomplete="off" -->
       <p class="m-input__error-msg">{{errorMsg}}</p>
       <div
         class="m-input-icon"
