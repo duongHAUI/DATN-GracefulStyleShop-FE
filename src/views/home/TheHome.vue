@@ -116,7 +116,7 @@ export default {
     NewsItem
   },
   created: async function() {
-    this.config.product = await (await new baseApi("Product").getByFilter({})).Data;
+    this.config.products = await (await new baseApi("Product").getByFilterDetail({})).Data;
     // eslint-disable-next-line no-debugger
     debugger
   },

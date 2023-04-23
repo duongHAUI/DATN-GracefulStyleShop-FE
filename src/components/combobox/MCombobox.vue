@@ -144,9 +144,8 @@ export default {
       this.textSelected = item[this.propName];
       this.textItemSelected = item[this.propName];
       this.isShowHideList = false;
-      // eslint-disable-next-line no-debugger
-      debugger
       this.$emit("update:modelValue", item[this.propValue]);
+      this.$emit("itemSelected",item);
       this.indexItemSelected = index;
     },
     /**

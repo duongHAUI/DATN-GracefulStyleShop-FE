@@ -1,9 +1,13 @@
 <template>
   <div class="p-card" :style="style">
+     <router-link
+          :to="`/products/${item.ProductId}`"
+        >
     <img
       src="../assets/img/c7pol004k-021_-_c7kha008k-015_1_1_c857c6c0eb884963b922f4fd11286d05_large.webp"
       alt=""
     />
+     </router-link>
     <div class="p-card-content">
       <div class="title truncate_two-row">{{ item.ProductName }}</div>
       <div class="proloop-price">

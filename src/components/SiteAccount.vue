@@ -1,5 +1,5 @@
 <template>
-    <div class="m-account" :style="{display : this.$state.accountLogin ? 'block' : 'none'}" >
+    <div class="m-account" v-if="modelValue" >
         <div class="site_account_panel_list">
             <div class="login-panel" :style="{display : loginLayout ? 'block' : 'none'}">
                 <div class="site_account_header">
@@ -46,6 +46,9 @@ export default {
         MButton,
         MInput
     },
+    props:{
+        modelValue : Boolean
+    },
     data() {
         return {
             email : "",
@@ -57,7 +60,7 @@ export default {
     methods:{
         redirectRegister(){
             this.$router.push('/account/register');
-            this.$state.accountLogin = false;
+            this.$emit("update:modelValue",false);
         }
     }
 }

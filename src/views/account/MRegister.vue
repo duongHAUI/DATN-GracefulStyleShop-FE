@@ -118,13 +118,17 @@ export default {
           return;
         }
         this.$state.isMask();
-        // add type role = 1 : Customer
-        this.modelRegister.Role = 1;
+        this.modelRegister.FullName = this.modelRegister.FirstName + " " + this.modelRegister.LastName;
         const res = await new baseApi("Customer").create(this.modelRegister);
-        console.log(res);
-
+        if(!res.ErrorCode){
+          localStorage.setItem('token', res.Data.Token);
+          this.$state.user = res.Data.Customer;
+          this.$state.setUser(res.Data.Customer);
+          this.$router.push("/");
+        }
         this.$state.unMask();
       } catch (error) {
+        console.log(error);
         this.$state.unMask();
       }
     },

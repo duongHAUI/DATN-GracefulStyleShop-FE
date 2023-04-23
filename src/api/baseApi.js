@@ -17,6 +17,16 @@ class baseApi {
       console.log(error);
     }
   };
+  /**
+   * Lấy các item theo bộ lọc
+   */
+  getByFilterDetail = (params) => {
+    try {
+      return axiosClient.post(this.baseUrl + "filter-detail", params);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   getAll = () => {
     try {
       return axiosClient.get(this.baseUrl);
@@ -40,6 +50,26 @@ class baseApi {
   getById = (id) => {
     try {
       return axiosClient.get(this.baseUrl + id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  /**
+   * Lấy 1 item theo Id
+   */
+  getByIdDetail = (id) => {
+    try {
+      return axiosClient.get(this.baseUrl+"detail/" + id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  /**
+   * Lấy 1 item theo Id
+   */
+  getByIdDetail = (id) => {
+    try {
+      return axiosClient.get(this.baseUrl + "Detail/" + id);
     } catch (error) {
       console.log(error);
     }

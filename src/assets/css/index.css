@@ -9,7 +9,7 @@
 @import url(./components/cart.css);
 @import url(./components/site-account.css);
 @import url(./components/form.css);
-
+@import url(./components/grid.css);
 
 @font-face {
   font-family: GoogleSans-Regular;
@@ -39,7 +39,9 @@ body {
   font-size: var(--font-size-default);
   width: 100%;
   position: relative;
-  background-color: var(--background-color-body) !important;
+}
+#app{
+  background-color: var(--background-color-body) ;
 }
 .m-main-content{
   padding: 0px var(--padding-beside);

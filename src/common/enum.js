@@ -137,6 +137,10 @@ const enumMISA = {
       supply : 15,
       type : 16,
       vote : 18,
+    },
+    paymentMethod :{
+      TTKLH : 0 , // thanh toán khi lấy hàng,
+      VNPAY : 1, //Thẻ ATM Pay qua cổng VNPAY
     }
   };
   export default enumMISA;

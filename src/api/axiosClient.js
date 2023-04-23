@@ -21,31 +21,39 @@ const axiosClient = axios.create({
 
 
 
-// // Xử lý token
-// axiosClient.interceptors.request.use(
-//   function(config) {
-//     const token = localStorage.getItem('token');
-//     if (token) {
-//       config.headers.Authorization = `Bearer ${token}`;
-//     }
-//     return config;
-//   },
-//   function(error) {
-//     return Promise.reject(error);
-//   }
-// );
+// Xử lý token
+axiosClient.interceptors.request.use(
+  function(config) {
+    // eslint-disable-next-line no-debugger
+    debugger
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }else{
+      router.push('/');
+    }
+    return config;
+  },
+  function(error) {
+    return Promise.reject(error);
+  }
+);
 
 /**
  * Config response
  */
 axiosClient.interceptors.response.use(
   (response) => {
+    // eslint-disable-next-line no-debugger
+    debugger
     if (response && response.data) {
       return response.data;
     }
     return response;
   },
   (error) => {
+    // eslint-disable-next-line no-debugger
+    debugger
     console.log("Lỗi", error);
     // Xử lý các lỗi của response
     if (error.response) {
