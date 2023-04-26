@@ -1,7 +1,7 @@
 <template>
   <div class="checkout">
     <div class="checkout-address">
-      <img src="/img/logo.2fdf4e31.webp" alt="" class="img-checkout" />
+      <a href="/"><img src="/img/logo.2fdf4e31.webp" alt="" class="img-checkout" /></a>
       <FolderRoutes :folderRoutes="folderRoutes" />
       <h3 class="method-title">Thông tin giao hàng</h3>
       <div class="combo-select">
@@ -273,8 +273,6 @@ export default {
     async getListAddressReceive() {
       const data = await new baseApi("AddressReceive").getByFilter({});
       this.listAddressReceive = data.Data;
-      // eslint-disable-next-line no-debugger
-      debugger
       const addressDefault = this.listAddressReceive.find(x => x.IsDefault);
       this.AddressReceiveDefault = addressDefault ? addressDefault : {};
     },

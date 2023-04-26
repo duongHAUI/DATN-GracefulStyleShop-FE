@@ -18,8 +18,6 @@ export default {
     FolderRoutes,
   },
   created: async function (){
-    // eslint-disable-next-line no-debugger
-    debugger
     const id = this.$route.params.id;
     if(id){
       this.product = await new baseApi("Product").getByIdDetail(id);

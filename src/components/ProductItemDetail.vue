@@ -36,27 +36,47 @@
     </div>
     <div class="item-content">
       <div class="product-title">
-        {{item.ProductName}}
+        {{ item.ProductName }}
       </div>
       <div class="product-brand">
         Thương hiệu: <span>{{ item.BrandName }}</span>
       </div>
       <div class="product-price">
-        <div class="product-price-old">{{formatPrice(item.PriceSale)}}</div>
-        <div class="product-price-new">{{formatPrice(item.PriceDel)}}</div>
+        <div class="product-price-old">{{ formatPrice(item.PriceSale) }}</div>
+        <div class="product-price-new">{{ formatPrice(item.PriceDel) }}</div>
       </div>
       <div class="product-color">
         <div class="product-color-title">
-          Màu sắc: <br /><strong :style="{color : colorActive.ColorCode}"> {{colorActive.ColorName}} </strong>
+          Màu sắc: <br /><strong :style="{ color: colorActive.ColorCode }">
+            {{ colorActive.ColorName }}
+          </strong>
         </div>
         <div class="product-color-list">
-          <div class="product-color-item" @click="activeColor(color)" :class="{'active' : colorActive.ColorId == color.ColorId}" v-for="color,index in Colors" :key="index" :style="{backgroundColor:color.ColorCode}"></div>
+          <div
+            class="product-color-item"
+            @click="activeColor(color)"
+            :class="{ active: colorActive.ColorId == color.ColorId }"
+            v-for="(color, index) in Colors"
+            :key="index"
+            :style="{ backgroundColor: color.ColorCode }"
+          ></div>
         </div>
       </div>
       <div class="product-size">
         <div class="product-size-title">Kích thước:</div>
         <div class="product-size-list">
-          <div class="product-size-item" @click="activeSize(size)" :class="{'disable' : !listSizeByColor.includes(size.SizeId),'active' :sizeActive.SizeId == size.SizeId }" v-for="size,index in Sizes" :key="index">{{size.SizeCode}}</div>
+          <div
+            class="product-size-item"
+            @click="activeSize(size)"
+            :class="{
+              disable: !listSizeByColor.includes(size.SizeId),
+              active: sizeActive.SizeId == size.SizeId,
+            }"
+            v-for="(size, index) in Sizes"
+            :key="index"
+          >
+            {{ size.SizeCode }}
+          </div>
         </div>
       </div>
       <hr />
@@ -65,11 +85,18 @@
       </div>
       <div class="select-quantity">
         <button @click="quantityNumber(-1)">-</button>
-        <input type="number" @input="changeQuantity" @keydown="handleKeyDown" :min="1" :max="1000"  v-model="quantity" />
+        <input
+          type="number"
+          @input="changeQuantity"
+          @keydown="handleKeyDown"
+          :min="1"
+          :max="1000"
+          v-model="quantity"
+        />
         <button @click="quantityNumber(1)">+</button>
       </div>
       <div class="addcart-area">
-        <button>
+        <button @click="addToCart">
           <span>Thêm vào giỏ</span>
         </button>
         <button class="btnred">
@@ -88,43 +115,60 @@
         <div class="panel-group">
           <div class="panel-title">
             <div class="panel-title-name">THông tin sản phẩm</div>
-          <div class="panel-icon" @click="InformationSummary = !InformationSummary"><i class="fa fa-plus"></i> </div>
-         </div>
-         <div v-html="item.Description" v-if="!InformationSummary"></div>
-         <hr>
+            <div
+              class="panel-icon"
+              @click="InformationSummary = !InformationSummary"
+            >
+              <i class="fa fa-plus"></i>
+            </div>
+          </div>
+          <div v-html="item.Description" v-if="!InformationSummary"></div>
+          <hr />
         </div>
         <div class="panel-group">
           <div class="panel-title noclick">
             <div class="panel-title-name">Dịch vụ giao hàng</div>
-          <div class="panel-icon" @click="serviceSummary =!serviceSummary"><i class="fa fa-plus"></i> </div>
-         </div>
-         <hr>
-         <div class="description-content" v-if="!serviceSummary">
-          <div class="product-deliverly">
-            <ul class="infoList-deliverly">
-              <li>
-                <span>
-                  <img src="https://file.hstatic.net/1000397797/file/delivery-ico1_f26631929e1b41dab022d9960006297c.svg" alt="">
-                </span>
-                Cam kết 100% chính hãng từ TokyoLife
-              </li>
-              <li>
-                <span>
-                  <img src="https://file.hstatic.net/1000397797/file/delivery-ico2_5ea2de2f279b4dbfa10fcb9b9c448b4d.svg" alt="">
-                </span>
-                Giao hàng dự kiến từ 1-3 ngày làm việc. (
-                <strong>LƯU Ý</strong>
-                : Đơn hàng có thể được giao làm nhiều lần do được vận chuyển từ nhiều kho)
-              </li>
-              <li>
-                <span>
-                  <img src="https://file.hstatic.net/1000397797/file/delivery-ico3_dd589d9c49584441a9ef0c2f9300649f.svg" alt="">
-                </span>
-                Hỗ trợ 24/7 qua Fanpage, Zalo Email & Hotline
-              </li>
-            </ul>
+            <div class="panel-icon" @click="serviceSummary = !serviceSummary">
+              <i class="fa fa-plus"></i>
+            </div>
           </div>
-         </div>
+          <hr />
+          <div class="description-content" v-if="!serviceSummary">
+            <div class="product-deliverly">
+              <ul class="infoList-deliverly">
+                <li>
+                  <span>
+                    <img
+                      src="https://file.hstatic.net/1000397797/file/delivery-ico1_f26631929e1b41dab022d9960006297c.svg"
+                      alt=""
+                    />
+                  </span>
+                  Cam kết 100% chính hãng từ TokyoLife
+                </li>
+                <li>
+                  <span>
+                    <img
+                      src="https://file.hstatic.net/1000397797/file/delivery-ico2_5ea2de2f279b4dbfa10fcb9b9c448b4d.svg"
+                      alt=""
+                    />
+                  </span>
+                  Giao hàng dự kiến từ 1-3 ngày làm việc. (
+                  <strong>LƯU Ý</strong>
+                  : Đơn hàng có thể được giao làm nhiều lần do được vận chuyển
+                  từ nhiều kho)
+                </li>
+                <li>
+                  <span>
+                    <img
+                      src="https://file.hstatic.net/1000397797/file/delivery-ico3_dd589d9c49584441a9ef0c2f9300649f.svg"
+                      alt=""
+                    />
+                  </span>
+                  Hỗ trợ 24/7 qua Fanpage, Zalo Email & Hotline
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -132,9 +176,9 @@
 </template>
 
 <script>
-import common from '@/common/common';
+import common from "@/common/common";
 import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
-common
+import baseApi from "@/api/baseApi";
 export default {
   name: "ProductItemDetail",
   components: {
@@ -143,39 +187,38 @@ export default {
     Navigation,
     Pagination,
   },
-  props:{
-    item : Object
+  props: {
+    item: Object,
   },
-  created(){
-  },
+  created() {},
   data() {
     return {
       currentSlide: 0,
-      InformationSummary : true,
-      serviceSummary : true,
-      Sizes:[],
-      Colors : [],
-      quantity : 1,
-      colorActive : {},
-      listSizeByColor : [],
-      sizeActive : {}
+      InformationSummary: true,
+      serviceSummary: true,
+      Sizes: [],
+      Colors: [],
+      quantity: 1,
+      colorActive: {},
+      listSizeByColor: [],
+      sizeActive: {},
     };
   },
   methods: {
     slideTo(val) {
       this.currentSlide = val;
     },
-    formatPrice(price){
+    formatPrice(price) {
       return common.formatPrice(price);
     },
-    quantityNumber(qty){
+    quantityNumber(qty) {
       var number = this.quantity + qty;
-      if(number > 0){
+      if (number > 0) {
         this.quantity = number;
       }
     },
-    changeQuantity(){
-      if(this.quantity < 1 || this.quantity > 100000){
+    changeQuantity() {
+      if (this.quantity < 1 || this.quantity > 100000) {
         this.quantity = 1;
       }
     },
@@ -184,26 +227,47 @@ export default {
         event.preventDefault();
       }
     },
-    activeColor(color){
+    activeColor(color) {
       this.colorActive = color;
-      this.listSizeByColor =this.colorActive.Sizes.length > 0 ? this.colorActive.Sizes.map(x => x.SizeId) : [];
+      this.listSizeByColor =
+        this.colorActive.Sizes.length > 0
+          ? this.colorActive.Sizes.map((x) => x.SizeId)
+          : [];
       this.sizeActive = color.Sizes[0] ? color.Sizes[0] : null;
     },
-    activeSize(size){
-      this.sizeActive =size;
-    }
+    activeSize(size) {
+      this.sizeActive = size;
+    },
+    async addToCart() {
+      if (!this.$state.user) {
+        this.$state.isShowLogin = true;
+      } else {
+        var ProductVariant = this.colorActive.Sizes.filter(
+          (x) => x.SizeId == this.sizeActive.SizeId
+        );
+        var cart = {
+          ProductVariantId: ProductVariant.ProductVariantId,
+          Quantity: this.quantity,
+          CustomerId: this.$state.user.CustomerId,
+        };
+        const res = await new baseApi("Cart").create(cart);
+        console.log(res);
+      }
+    },
   },
-  watch:{
-    item : function() {
-      // eslint-disable-next-line no-debugger
-      debugger
+  watch: {
+    item: function () {
       this.Colors = this.item.Colors;
       this.colorActive = this.Colors.length > 0 ? this.Colors[0] : {};
-      this.listSizeByColor = this.colorActive.Sizes.length > 0 ? this.colorActive.Sizes.map(x => x.SizeId) : [];
-      this.sizeActive = this.colorActive.Sizes.length > 0 ? this.colorActive.Sizes[0] : null;
+      this.listSizeByColor =
+        this.colorActive.Sizes.length > 0
+          ? this.colorActive.Sizes.map((x) => x.SizeId)
+          : [];
+      this.sizeActive =
+        this.colorActive.Sizes.length > 0 ? this.colorActive.Sizes[0] : null;
       this.Sizes = this.item.Sizes;
-    }
-  }
+    },
+  },
 };
 </script>
 <style>
@@ -296,7 +360,7 @@ export default {
   background-color: red;
   margin-right: 16px;
 }
-.product-color-item.active{
+.product-color-item.active {
   outline: 2px solid blue;
 }
 .product-size {
@@ -334,24 +398,24 @@ export default {
   cursor: pointer;
   margin-right: 12px;
 }
-.product-size-item.active{
+.product-size-item.active {
   background-color: var(--input-primary);
-  color:white;
+  color: white;
 }
-.product-size-item.disable::before{
+.product-size-item.disable::before {
   position: absolute;
   content: "";
-  width:1px;
+  width: 1px;
   height: 100%;
   left: 50%;
   transform: translateX(-50%);
   transform: rotate(45deg);
   background-color: #515b5c;
 }
-.product-size-item.disable::after{
+.product-size-item.disable::after {
   position: absolute;
   content: "";
-  width:100%;
+  width: 100%;
   height: 1px;
   top: 50%;
   left: 0;
@@ -359,7 +423,7 @@ export default {
   transform: rotate(45deg);
   background-color: #515b5c;
 }
-.select-quantity{
+.select-quantity {
   display: flex;
 }
 .select-quantity button {
@@ -460,53 +524,51 @@ export default {
   font-size: 13px;
 }
 
-
-.panel-group{
+.panel-group {
   margin-top: 16px;
 }
-.panel-title{
+.panel-title {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.panel-title-name{
+.panel-title-name {
   color: #000000;
-    font-weight: 700;
-    line-height: 1.2;
-    text-transform: uppercase;
-    font-size: 15px;
-    font-weight: 500;
-    margin: 0;
-    cursor: pointer;
-    font-weight: bold;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+  font-size: 15px;
+  font-weight: 500;
+  margin: 0;
+  cursor: pointer;
+  font-weight: bold;
 }
-.panel-icon i{
+.panel-icon i {
   font-weight: 900;
   cursor: pointer;
 }
 
-
-.description-content{
+.description-content {
   display: block;
 }
-.infoList-deliverly{
+.infoList-deliverly {
   padding: 0;
-    margin: 0;
-    list-style-type: none;
+  margin: 0;
+  list-style-type: none;
 }
 .infoList-deliverly li {
-    padding-left: 45px;
-    padding-top: 4px;
-    position: relative;
-    margin-bottom: 20px;
+  padding-left: 45px;
+  padding-top: 4px;
+  position: relative;
+  margin-bottom: 20px;
 }
 .infoList-deliverly li span {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 30px;
-    display: inline-block;
-    vertical-align: middle;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px;
+  display: inline-block;
+  vertical-align: middle;
 }
 </style>
