@@ -22,25 +22,11 @@ export default {
   },
   data() {
     return {
-        folderRoutesTest : [
-        {
-          url: "/",
-          title: "Trang chủ ",
-        },
-        {
-          url: "/1",
-          title: "Áo Polo Nữ ",
-        },
-        {
-          url: "/3",
-          title: " Áo Polo cổ vải trơn C9POL004K",
-        },
-      ]
     }
   },
   methods:{
     routesNow(index){
-        return index === this.folderRoutesTest.length - 1;
+        return index === this.folderRoutesTest?.length - 2;
     }
   }
 };

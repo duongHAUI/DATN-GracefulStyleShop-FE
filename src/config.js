@@ -60,6 +60,7 @@ class config {
     };
     
     this.products = [];
+    this.productRelated = [];
   }
 }
 export default config;
