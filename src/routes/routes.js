@@ -1,8 +1,10 @@
 import Thehome from "@/views/home/TheHome.vue";
 import ProductDetail from "@/views/product/ProductDetail.vue";
+import MProducts from "@/views/product/MProducts.vue";
 import TheCart from "@/views/TheCart.vue";
 import MRegister from "@/views/account/MRegister";
 import MCheckout from "@/views/checkout/MCheckout.vue";
+import MInfoUser from "@/views/info/MInfoUser.vue";
 
 
 /**
@@ -18,6 +20,10 @@ const routes = [
     component:ProductDetail,
  },
  {
+   path: "/products",
+     component:MProducts,
+  },
+ {
   path: "/cart",
     component:TheCart,
  },
@@ -26,7 +32,11 @@ const routes = [
     component:MRegister,
  },
  {
-   path: "/checkouts/:id",
+ path: "/account/profile",
+    component:MInfoUser,
+ },
+ {
+   path: "/checkout",
     component:MCheckout,
  },
 ];

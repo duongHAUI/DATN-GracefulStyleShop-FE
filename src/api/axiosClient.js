@@ -2,7 +2,7 @@ import resources from "@/common/resource";
 import axios from "axios";
 import queryString from "query-string";
 import state from "../store";
-import enumMISA from "@/common/enum";
+import enumD from "@/common/enum";
 import router from "@/routes";
 
 /**
@@ -56,7 +56,7 @@ axiosClient.interceptors.response.use(
       }
     } else if (error.request) {
       // Xử lý các lỗi từ phía client
-      if (error.code === enumMISA.ERROR_REQUEST.ERR_NETWORK) {
+      if (error.code === enumD.ERROR_REQUEST.ERR_NETWORK) {
         toastMessage(resources.vi.errorMessageAPI.ERROR_NETWORK);
       }
     } else {

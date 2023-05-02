@@ -12,8 +12,11 @@ export default {
     // eslint-disable-next-line no-debugger
     debugger
     this.$state.getUser();
-    const res = await new cartApi("Cart").cartNumber(this.$state.user.CustomerId);
-    this.$state.cartNumber = res.Data;
+    if(this.$state.user){
+      const cartNumber = await new cartApi("Cart").cartNumber();
+      localStorage.setItem("cartNumber",cartNumber?.data == 0 ? 0 : cartNumber);
+      this.$state.cartNumber = cartNumber?.data == 0 ? 0 : cartNumber;
+    }
   },
   components: {
     MainLayout,

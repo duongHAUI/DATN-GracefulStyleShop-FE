@@ -1,8 +1,20 @@
-const enumMISA = {
+const enumD = {
   enumColor:{
     red : 1,
     blue : 2,
     white : 3,
+  },
+  enumStatusCheckout:{
+    ChoXacNhan : 1,
+    ChoLayHang : 2,
+    DangVanChuyen : 3,
+    DaNhanHang  :4,
+    HoanThanh : 5,
+    Huy : 6
+  },
+  ShipmentMethod:{
+    GHN : 'GHN',
+    GHTK : 'GHTK'
   },
     /**
      * Enum giới tính
@@ -139,8 +151,8 @@ const enumMISA = {
       vote : 18,
     },
     paymentMethod :{
-      TTKLH : 0 , // thanh toán khi lấy hàng,
-      VNPAY : 1, //Thẻ ATM Pay qua cổng VNPAY
+      TTKLH : 1 , // thanh toán khi lấy hàng,
+      VNPAY : 2, //Thẻ ATM Pay qua cổng VNPAY
     },
     filterProductType:{
       selling : 1, // Sản phẩm bán chạy
@@ -149,5 +161,5 @@ const enumMISA = {
       PriceAsc: 4, // Sản phẩm tăng dần theo giá
     }
   };
-  export default enumMISA;
+  export default enumD;
   

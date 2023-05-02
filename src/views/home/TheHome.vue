@@ -106,7 +106,7 @@ import ProductCard from "@/components/ProductCard.vue";
 import { VBtn } from "vuetify/lib/components";
 import NewsItem from '@/components/NewsItem.vue';
 import baseApi from '@/api/baseApi';
-import enumMISA from '@/common/enum';
+import enumD from '@/common/enum';
 export default {
   name: "TheHome",
   components: {
@@ -117,7 +117,7 @@ export default {
     NewsItem
   },
   created: async function() {
-    this.FilterType = enumMISA.filterProductType.selling;
+    this.FilterType = enumD.filterProductType.selling;
     var res = await new baseApi("Product").getByFilterDetail(this.paramsFilter);
     this.config.products  = res.Data ? res.Data : [];
   },

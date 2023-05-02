@@ -63,7 +63,7 @@
   </div>
 </template>
 <script>
-import enumMISA from "@/common/enum";
+import enumD from "@/common/enum";
 import common from "@/common/common";
 import resources from "@/common/resource";
 export default {
@@ -118,7 +118,7 @@ export default {
     // Hiển thị mặc định
     this.setItemSelected();
     // Xử lý nếu list hiện ở trên
-    if (this.locationList == enumMISA.LoCATION_LIST_CBB.UP) {
+    if (this.locationList == enumD.LoCATION_LIST_CBB.UP) {
       this.locationSize = 33.6 * this.data.length + 37;
     }
   },
@@ -189,7 +189,7 @@ export default {
     inputOnKeyDown(event) {
       switch (event.keyCode) {
         // Nhấn phím enter
-        case enumMISA.KEY_CODE.ENTER:
+        case enumD.KEY_CODE.ENTER:
           // check xem hover vào item nào chưa nếu rồi thì lưu item
           if (this.indexItemSelected !== null) {
             var me = this;
@@ -203,7 +203,7 @@ export default {
           }
           break;
         // Phím mũi tên lên
-        case enumMISA.KEY_CODE.KEY_UP:
+        case enumD.KEY_CODE.KEY_UP:
           // Hiển list nếu ẩn
           if (!this.isShowHideList) this.isShowHideList = true;
           else {
@@ -218,7 +218,7 @@ export default {
             }
           }
           break;
-        case enumMISA.KEY_CODE.KEY_DOWN:
+        case enumD.KEY_CODE.KEY_DOWN:
           // Phím mũi tên xuống
           if (!this.isShowHideList) this.isShowHideList = true;
           else {

@@ -3,27 +3,36 @@
     <div class="media-leff">
       <div class="item-img">
         <img
-          src="https://product.hstatic.net/200000532555/product/n_o_polo_dura_c_bo_d_t_t_ong_i9pol010k_xanh_l_350k_1_1_29803815bc594e369ee68fc4fd5628ab_master.jpg"
+          :src="item.Images[0].ImageLink"
           alt=""
         />
-        <div class="item-remove">1</div>
+        <div class="item-remove">{{item.Quantity}}</div>
       </div>
     </div>
     <div class="media-right">
       <div class="item-info">
         <h3 class="item--title">
-          Áo Polo CAFÉ cổ phối 3 đường kẻ nữ C9POL002K
+          {{item.ProductName}}
         </h3>
-        <div class="item--variant"><span>Đỏ / S</span></div>
+        <div class="item--variant"><span>{{item.ColorName}} / {{item.SizeCode}}</span></div>
       </div>
     </div>
     <div class="media-total">
-      <span>249,000₫</span>
+      <span>{{$state.formatPrice(item.TotalPrice)}}</span>
     </div>
   </div>
 </template>
 <script>
-export default {};
+export default {
+  props:{
+    item : Object
+  },
+  data() {
+    return {
+      
+    }
+  },
+};
 </script>
 <style scoped>
 .cart-item {
