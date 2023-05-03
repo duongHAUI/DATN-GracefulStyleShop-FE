@@ -28,12 +28,12 @@
         </form>
       </div>
       <div class="m__e-list-empty" v-if="$state.cartNumber == 0">
-            <img
-              src="@/assets/img/bg_report_nodata.76e50bd8.svg"
-              alt="Không có dữ liệu"
-            />
-            <div>Không có sản phẩm trong giỏ hàng</div>
-      </div> 
+        <img
+          src="@/assets/img/bg_report_nodata.76e50bd8.svg"
+          alt="Không có dữ liệu"
+        />
+        <div>Không có sản phẩm trong giỏ hàng</div>
+      </div>
     </div>
     <div class="order-summary-block">
       <h2 class="summary-title">Thông tin đơn hàng</h2>
@@ -59,9 +59,7 @@
         <div class="summary-alert alert alert-danger" style="display: none">
           Giỏ hàng của bạn hiện chưa đạt mức tối thiểu để thanh toán.
         </div>
-        <div class="summary-button" @click="toCheckout">
-          THANH TOÁN
-        </div>
+        <div class="summary-button" @click="toCheckout">THANH TOÁN</div>
       </div>
       <div class="order-summary-block order-summary-notify">
         <div class="summary-warning alert-order">
@@ -115,22 +113,30 @@ export default {
       this.carts = this.carts.filter((x) => x.CartId != cartId);
     },
     async getCart() {
-      const res = await new baseApi("Cart").getByFilter({});
-      this.carts = res.Data;
-      (this.total = {
-        totalPrice: 0,
-        totalDel: 0,
-      }),
-        this.carts.forEach((element) => {
-          this.total.totalPrice += element.TotalPrice;
-          this.total.totalDel += element.TotalDel;
-        });
-    },
-    toCheckout(){
-      if(this.$state.cartNumber != 0){
-        this.$router.push('checkout');
+      try {
+        if (this.$state.user) {
+          const res = await new baseApi("Cart").getByFilter({});
+          this.carts = res.Data;
+          (this.total = {
+            totalPrice: 0,
+            totalDel: 0,
+          }),
+            this.carts.forEach((element) => {
+              this.total.totalPrice += element.TotalPrice;
+              this.total.totalDel += element.TotalDel;
+            });
+        }else{
+          this.$router.push("/");
+        }
+      } catch (error) {
+        console.log(error);
       }
-    }
+    },
+    toCheckout() {
+      if (this.$state.cartNumber != 0) {
+        this.$router.push("checkout");
+      }
+    },
   },
 };
 </script>

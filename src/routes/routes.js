@@ -4,7 +4,7 @@ import MProducts from "@/views/product/MProducts.vue";
 import TheCart from "@/views/TheCart.vue";
 import MRegister from "@/views/account/MRegister";
 import MCheckout from "@/views/checkout/MCheckout.vue";
-import MInfoUser from "@/views/info/MInfoUser.vue";
+import MProfile from "@/views/profile/MProfile.vue";
 
 
 /**
@@ -33,7 +33,7 @@ const routes = [
  },
  {
  path: "/account/profile",
-    component:MInfoUser,
+    component:MProfile,
  },
  {
    path: "/checkout",

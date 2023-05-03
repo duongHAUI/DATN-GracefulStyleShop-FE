@@ -62,7 +62,7 @@
                   </div>
                   <div class="site_account_inner">
                     <ul>
-                      <li><a href="/account">Tài khoản của tôi</a></li>
+                      <li><a href="/account/profile">Tài khoản của tôi</a></li>
                       <li>
                         <a href="/account/addresses">Danh sách địa chỉ</a>
                       </li>
@@ -103,13 +103,13 @@
                 d="m360.355469 322.332031c-30.046875 0-54.402344 24.355469-54.402344 54.402344 0 30.042969 24.355469 54.398437 54.402344 54.398437 30.042969 0 54.398437-24.355468 54.398437-54.398437-.03125-30.03125-24.367187-54.371094-54.398437-54.402344zm0 88.800781c-19 0-34.402344-15.402343-34.402344-34.398437 0-19 15.402344-34.402344 34.402344-34.402344 18.996093 0 34.398437 15.402344 34.398437 34.402344 0 18.996094-15.402344 34.398437-34.398437 34.398437zm0 0"
               ></path>
             </svg>
-            <div class="number-pro">{{ $state.cartNumber }}</div>
+            <div class="number-pro" v-if="$state.user">{{ $state.cartNumber }}</div>
           </div>
           <div class="hd-card">Giỏ hàng</div>
         </div>
         <div
           class="cart-view"
-          v-if="isShowCartView"
+          v-if="isShowCartView && $state.user"
           v-click-outside="clickOutSideCartView"
         >
           <h1>Giỏ hàng</h1>
@@ -209,7 +209,7 @@ export default {
   },
   watch: {
     isShowCartView: async function () {
-      if (this.isShowCartView) {
+      if (this.isShowCartView && this.$state.user) {
         const res = await new baseApi("Cart").getByFilter({});
         this.cartView = res.Data;
       }

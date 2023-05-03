@@ -1,7 +1,7 @@
 <template>
   <div
     :style="{ marginBottom: errorMsg ? '32px' : marginBottom ? marginBottom :'24px', width: width,display:'flex' }"
-    class="m-input-component"
+    class="m-input-component "
     :class="{ error: errorMsg }"
   >
     <label for="m-input" class="m-lable"
@@ -12,8 +12,9 @@
       :style="{
         height: height,
         marginTop: !textField ? '' : marginTopInput,
+        left : absoluteLeftInput ? absoluteLeftInput + 'px': '120px'
       }"
-      class="m-input-main"
+      class="m-input-main" 
     >
       <input
         class="m-input"
@@ -81,7 +82,8 @@ export default {
       type: Array,
       default : new Array(0)
     },
-    tabIndex : Number
+    tabIndex : Number,
+    absoluteLeftInput: Number,
   },
   methods: {
     /**
@@ -126,4 +128,12 @@ export default {
 
 <style scoped>
 @import url(./input.css);
+.m-input-component{
+  display:flex;
+  align-items: center;
+  position: relative;
+}
+.m-input-main{
+  position: absolute;
+}
 </style>

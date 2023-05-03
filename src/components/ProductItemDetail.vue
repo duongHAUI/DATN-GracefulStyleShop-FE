@@ -265,10 +265,6 @@ export default {
           await new baseApi("Cart").create(cart);
           if (this.$state.user) {
             const cartNumber = await new cartApi("Cart").cartNumber();
-            localStorage.setItem(
-              "cartNumber",
-              cartNumber?.data == 0 ? 0 : cartNumber
-            );
             this.$state.cartNumber = cartNumber?.data == 0 ? 0 : cartNumber;
           }
           this.$state.toastMessage.unshift(

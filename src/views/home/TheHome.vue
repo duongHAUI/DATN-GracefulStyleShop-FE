@@ -2,8 +2,8 @@
   <div class="home">
     <div class="homepage-slider">
       <Carousel :settings="config.settingSliderBar">
-        <Slide v-for="(item, index) in config.dataSliders" :key="index">
-          <img :src="item" :alt="index" />
+        <Slide v-for="(item, index) in config.sliders" :key="index">
+          <img :src="item.ImageLink" :alt="index" />
         </Slide>
         <!-- <template #addons>
           <Navigation />
@@ -120,6 +120,8 @@ export default {
     this.FilterType = enumD.filterProductType.selling;
     var res = await new baseApi("Product").getByFilterDetail(this.paramsFilter);
     this.config.products  = res.Data ? res.Data : [];
+    res = await new baseApi("Slider").getByFilter(this.paramsFilter);
+    this.config.sliders  = res.Data ? res.Data : [];
   },
   data() {
     return {

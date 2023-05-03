@@ -130,6 +130,7 @@ export default {
           this.$state.setUser(res.Data.Customer);
           this.$state.isShowLogin = false;
         }
+        window.location.reload();
       } catch (error) {
         console.log(error);
         var res = error?.response?.data;

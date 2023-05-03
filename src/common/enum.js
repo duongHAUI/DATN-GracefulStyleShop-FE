@@ -12,6 +12,15 @@ const enumD = {
     HoanThanh : 5,
     Huy : 6
   },
+  enumStatusOrder:{
+    TatCa : 0,
+    ChoThanhToan : 1,
+    VanChuyen : 2,
+    DangGiao : 3,
+    HoanThanh  :4,
+    DaHuy : 5,
+    TraHang : 6
+  },
   ShipmentMethod:{
     GHN : 'GHN',
     GHTK : 'GHTK'
