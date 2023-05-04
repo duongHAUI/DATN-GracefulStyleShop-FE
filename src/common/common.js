@@ -2,23 +2,29 @@ import msEnum from "./enum";
 import resources from "./resource";
 import constants from "./constants";
 
-msEnum
+msEnum;
 const common = {
-    formatPrice(price){
-        if(!price) return '';
-        return  new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
-    },
-    getColor(enumColor){
-        switch(enumColor){
-            case msEnum.enumColor.red : return 'red';
-            case msEnum.enumColor.blue : return 'blue';
-            case msEnum.enumColor.white : return 'white';
-        }
-    },
-    /**
+  formatPrice(price) {
+    if (!price) return "";
+    return new Intl.NumberFormat("vi-VN", {
+      style: "currency",
+      currency: "VND",
+    }).format(price);
+  },
+  getColor(enumColor) {
+    switch (enumColor) {
+      case msEnum.enumColor.red:
+        return "red";
+      case msEnum.enumColor.blue:
+        return "blue";
+      case msEnum.enumColor.white:
+        return "white";
+    }
+  },
+  /**
    * Format date (DD/MM/YYYY)
    */
-  formatDate(dateTime){
+  formatDate(dateTime) {
     try {
       if (dateTime) {
         dateTime = new Date(dateTime);
@@ -38,7 +44,27 @@ const common = {
       return "";
     }
   },
-    /**
+  getTitleStatusOrder(status) {
+    // eslint-disable-next-line no-debugger
+    debugger
+    switch (status) {
+      case msEnum.enumStatusOrder.ChoXacNhan:
+        return "Chờ xác nhận";
+      case msEnum.enumStatusOrder.ChoLayHang:
+        return "Chờ lấy hàng";
+      case msEnum.enumStatusOrder.DangGiao:
+        return "Đang giao";
+      case msEnum.enumStatusOrder.DaNhanHang:
+        return "Đã nhận hàng";
+      case msEnum.enumStatusOrder.HoanThanh:
+        return "Hoàn thành";
+      case msEnum.enumStatusOrder.DaHuy:
+        return "Đã hủy";
+      case msEnum.enumStatusOrder.TraHang:
+        return "Trả hàng";
+    }
+  },
+  /**
    * Hàm validate input
    */
   inputValidation: (rules, name, value) => {
@@ -84,6 +110,6 @@ const common = {
       }
     }
   },
-}
+};
 
 export default common;

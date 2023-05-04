@@ -14,12 +14,13 @@ const enumD = {
   },
   enumStatusOrder:{
     TatCa : 0,
-    ChoThanhToan : 1,
-    VanChuyen : 2,
+    ChoXacNhan : 1,
+    ChoLayHang : 2,
     DangGiao : 3,
-    HoanThanh  :4,
-    DaHuy : 5,
-    TraHang : 6
+    DaNhanHang: 4,
+    HoanThanh  :5,
+    DaHuy : 6,
+    TraHang : 7
   },
   ShipmentMethod:{
     GHN : 'GHN',

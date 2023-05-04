@@ -1,7 +1,7 @@
 <template>
   <div class="order-main-item" @click="showDetailOrder">
     <div class="top">
-      <div class="status-title">HOÀN THÀNH</div>
+      <div class="status-title">{{getTitleStatusOrder(item.Status)}}</div>
     </div>
     <div class="order-item">
       <div class="media-right">
@@ -35,6 +35,7 @@
   </div>
 </template>
 <script>
+import common from '@/common/common';
 import MButton from "../button/MButton.vue";
 export default {
   props: {
@@ -49,6 +50,9 @@ export default {
   methods: {
     showDetailOrder(){
       this.$emit("show-detail",this.item.OrderId);
+    },
+    getTitleStatusOrder(status){
+      return common.getTitleStatusOrder(status);
     }
   },
 };

@@ -2,7 +2,7 @@
   <div class="order-item-detail" v-if="isShow">
     <div class="order-item-detail-header">
       <div class="header-prev" @click="$emit('close')">TRỞ LẠI</div>
-      <div class="header-info">ĐƠN HÀNG ĐÃ HOÀN THÀNH</div>
+      <div class="header-info">{{getTitleStatusOrder(order.Status)}}</div>
     </div>
     <ul class="progressbar">
       <div class="step">
@@ -86,6 +86,7 @@
 <script>
 import baseApi from '@/api/baseApi';
 import CartItemCheckout from "../Cart/CartItemCheckout.vue";
+import common from '@/common/common';
 export default {
   components: {
     CartItemCheckout,
@@ -95,16 +96,23 @@ export default {
     OrderId : String,
   },
   created: async function(){
-    
   },
   data() {
     return {
-      order : {}
+      order : {
+      }
     };
+  },
+  methods:{
+    getTitleStatusOrder(status){
+      return common.getTitleStatusOrder(status);
+    }
   },
   watch:{
     OrderId  :async  function () {
       if(this.OrderId){
+        // eslint-disable-next-line no-debugger
+        debugger
         const res = await new baseApi("Order").getById(this.OrderId);
         this.order = res;
       }
