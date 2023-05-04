@@ -39,15 +39,14 @@
     <div class="order-item-detail-info">
       <div class="info-address">
         <h5>Địa Chỉ Nhận Hàng</h5>
-        <h6>Nguyễn Văn Dương</h6>
-        <div>(+84) 328669614</div>
+        <h6>{{order.Receiver}}</h6>
+        <div>{{order.Phone}}</div>
         <div>
-          92/80 Ngõ 80 Xuân Phương Tu Hoàng, Phường Phương Canh, Quận Nam Từ
-          Liêm, Hà Nội
+          {{order.AddressDetail}}
         </div>
       </div>
       <div class="info-product">
-        <cart-item-checkout :item="item" />
+        <cart-item-checkout v-for="orderDetail,index in order.OrderDetails" :key="index" :item="orderDetail" />
         <div class="TokOv1">
           <div class="_8kMYJ3">
             <span>Tổng tiền hàng</span>
@@ -85,82 +84,32 @@
   </div>
 </template>
 <script>
+import baseApi from '@/api/baseApi';
 import CartItemCheckout from "../Cart/CartItemCheckout.vue";
 export default {
   components: {
     CartItemCheckout,
   },
   props:{
-    isShow:Boolean
+    isShow:Boolean,
+    OrderId : String,
+  },
+  created: async function(){
+    
   },
   data() {
     return {
-      item: {
-        CartId: "6a4c1adb-db0c-45aa-bdc2-e4f98dfae952",
-        Quantity: 1,
-        PriceSale: 85000,
-        Discount: 30,
-        CreatedAt: "2023-05-02T23:10:37",
-        ModifiedAt: "2023-05-02T23:10:37",
-        CustomerId: "6efa3a3f-83a9-4f01-87fb-8a678e53d013",
-        ProductVariantId: "119b4ebd-e3f6-4fd6-88c9-2bf0197d943f",
-        ProductId: "0a90bce8-c221-41e1-8d97-1e8d8e40f519",
-        ProductName: "Áo T-Shirt Nữ Cổ Tròn I9TSH554I",
-        ColorName: "Vàng",
-        SizeCode: "L",
-        Images: [
-          {
-            ImageId: "26ab4b7a-1b62-4918-a5ec-d4f9350acad7",
-            ImageName: "Mau.PNG",
-            ImageLink:
-              "http://res.cloudinary.com/dqywrcgrr/image/upload/v1681464239/26ab4b7a-1b62-4918-a5ec-d4f9350acad7.png",
-            ObjectId: "00000000-0000-0000-0000-000000000000",
-            IsDefault: 0,
-          },
-          {
-            ImageId: "624980d5-8a8e-42be-9345-a5029cdd882e",
-            ImageName: "XanhThan.PNG",
-            ImageLink:
-              "http://res.cloudinary.com/dqywrcgrr/image/upload/v1681464242/624980d5-8a8e-42be-9345-a5029cdd882e.png",
-            ObjectId: "00000000-0000-0000-0000-000000000000",
-            IsDefault: 0,
-          },
-          {
-            ImageId: "90480742-146f-4043-a39d-c6ec6f6ffa0f",
-            ImageName: "Do.PNG",
-            ImageLink:
-              "http://res.cloudinary.com/dqywrcgrr/image/upload/v1681464237/90480742-146f-4043-a39d-c6ec6f6ffa0f.png",
-            ObjectId: "00000000-0000-0000-0000-000000000000",
-            IsDefault: 0,
-          },
-          {
-            ImageId: "ac6bddcb-a5dd-4609-9c72-01072bfb7cfd",
-            ImageName: "Den1.PNG",
-            ImageLink:
-              "http://res.cloudinary.com/dqywrcgrr/image/upload/v1681464236/ac6bddcb-a5dd-4609-9c72-01072bfb7cfd.png",
-            ObjectId: "00000000-0000-0000-0000-000000000000",
-            IsDefault: 0,
-          },
-          {
-            ImageId: "e886037a-f04a-4228-b21d-63861f5760cf",
-            ImageName: "Trang.PNG",
-            ImageLink:
-              "http://res.cloudinary.com/dqywrcgrr/image/upload/v1681464240/e886037a-f04a-4228-b21d-63861f5760cf.png",
-            ObjectId: "00000000-0000-0000-0000-000000000000",
-            IsDefault: 0,
-          },
-        ],
-        TotalPrice: 59500,
-        TotalDel: 85000,
-        PriceDel: 59500,
-        ImageId: "00000000-0000-0000-0000-000000000000",
-        ImageName: null,
-        ImageLink: null,
-        ObjectId: "00000000-0000-0000-0000-000000000000",
-        IsDefault: 0,
-      },
+      order : {}
     };
   },
+  watch:{
+    OrderId  :async  function () {
+      if(this.OrderId){
+        const res = await new baseApi("Order").getById(this.OrderId);
+        this.order = res;
+      }
+    }
+  }
 };
 </script>
 <style></style>

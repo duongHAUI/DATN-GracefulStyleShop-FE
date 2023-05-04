@@ -281,7 +281,7 @@ export default {
       Districts: [],
       Wards: [],
       ShippingMethod: "1",
-      paymentMethod: 0,
+      paymentMethod: enumD.paymentMethod.TTKLH,
       shipments: [],
       enumPayment: enumD.paymentMethod,
       folderRoutes: [
