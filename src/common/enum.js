@@ -162,7 +162,7 @@ const enumD = {
     },
     paymentMethod :{
       TTKLH : 1 , // thanh toán khi lấy hàng,
-      VNPAY : 2, //Thẻ ATM Pay qua cổng VNPAY
+      ONLINE : 2, //Thẻ ATM 
     },
     filterProductType:{
       selling : 1, // Sản phẩm bán chạy

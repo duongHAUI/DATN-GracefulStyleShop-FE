@@ -45,8 +45,6 @@ const common = {
     }
   },
   getTitleStatusOrder(status) {
-    // eslint-disable-next-line no-debugger
-    debugger
     switch (status) {
       case msEnum.enumStatusOrder.ChoXacNhan:
         return "Chờ xác nhận";

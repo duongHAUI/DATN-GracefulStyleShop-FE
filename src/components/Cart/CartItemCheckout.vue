@@ -15,10 +15,16 @@
           {{item.ProductName}}
         </h3>
         <div class="item--variant"><span>{{item.ColorName}} / {{item.SizeCode}}</span></div>
+        <div class="item-price">
+          <p>
+            <span>{{ $state.formatPrice(item.PriceDel) }}</span>
+            <sup v-if="item.Discount">{{ $state.formatPrice(item.PriceDel + (item.Discount*0.01*item.PriceDel)) }}</sup>
+          </p>
+        </div>
       </div>
     </div>
     <div class="media-total">
-      <span>{{$state.formatPrice(item.PriceSale * item.Quantity)}}</span>
+      <span>{{$state.formatPrice(item.PriceDel * item.Quantity)}}</span>
     </div>
   </div>
 </template>
@@ -101,10 +107,11 @@ export default {
   font-weight: 600;
   color: #8f9bb3;
 }
-.item-price del {
-  color: #8f9bb3;
-  font-size: 90%;
-  margin-left: 5px;
+.item-price sup {
+  color: #f31612;
+  font-size: 80%;
+  margin-left: 8px;
+  text-decoration:line-through;
 }
 .media-total {
   text-align: righ;

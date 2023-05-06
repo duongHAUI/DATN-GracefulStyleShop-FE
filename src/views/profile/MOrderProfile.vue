@@ -1,7 +1,7 @@
 <template>
   <div
     class="order-profile"
-    v-if="isShow"
+    v-if="isShow && !showDetail"
     :style="{ display: hidden ? 'none' : 'unset' }"
   >
     <div class="order-status">
@@ -83,8 +83,6 @@ export default {
   },
   created: async function(){
     try {
-      // eslint-disable-next-line no-debugger
-      debugger
       const res = await new baseApi("Order").getByFilter({});
       console.log(res);
       this.orders = res.Data;

@@ -2,20 +2,24 @@
     display: flex;
     justify-content: space-between;
     padding: 12px 24px;
+    position: relative;
     background-color: white;
     border-radius: 0 0 8px 8px;
 }
-
-
-
-
-
 .progressbar{
     display: flex;
     justify-content: space-between;
     background-color: white;
     border-radius: 8px ;
     padding: 16px 0;
+}
+.paid{
+    position: absolute;
+    width: max-content;
+    padding: 2px 4px;
+    z-index: 9;
+    border: 2px solid #2dc258;
+    transform: rotate(-10deg);
 }
 .step{
     flex: 1;
