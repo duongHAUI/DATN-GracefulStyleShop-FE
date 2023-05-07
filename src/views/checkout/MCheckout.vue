@@ -2,7 +2,7 @@
   <div class="checkout">
     <div class="checkout-address">
       <a href="/"
-        ><img src="/img/logo.2fdf4e31.webp" alt="" class="img-checkout"
+        ><img src="@/assets/img/logo.png" alt="" class="img-checkout"
       /></a>
       <FolderRoutes :folderRoutes="folderRoutes" />
       <h3 class="method-title">Thông tin giao hàng</h3>
@@ -333,10 +333,7 @@ export default {
     },
     async submitCheckout() {
       try {
-        // eslint-disable-next-line no-debugger
-        debugger;
         this.addProperty();
-
         var orderDetails = [];
         this.carts.forEach((x) => {
           orderDetails.push({
@@ -353,7 +350,13 @@ export default {
         let formBody = this.formCheckout;
         formBody.OrderDetails = orderDetails;
 
-        await new baseApi("Order").create(formBody);
+        const res = await new baseApi("Order").create(formBody);
+        if(!res.ErrorCode){
+          this.$state.tabProfile = 3;
+          this.$router.push("/account/profile").then(() => {
+          window.scrollTo(0, 0);
+      });
+        }
       } catch (error) {
         console.log(error);
       }
@@ -369,7 +372,7 @@ export default {
       this.formCheckout.Receiver = this.AddressReceiveDefault.Receiver;
       this.formCheckout.Phone = this.AddressReceiveDefault.Phone;
       this.formCheckout.AddressDetail = this.AddressReceiveDefault.AddressDetail;
-      this.formCheckout.Status = enumD.enumStatusCheckout.ChoXacNhan;
+      this.formCheckout.Status = enumD.enumStatusOrder.ChoXacNhan;
     },
   },
   watch: {},

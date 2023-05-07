@@ -35,7 +35,8 @@
     cursor: pointer;
 }
 .method-left img{
-    width: 30px;
+    /* width: 30px; */
+    width: 200%;
     height: 100%;
     margin-right: 12px;
 }
@@ -79,8 +80,9 @@
     font-weight: bold;
 }
 .img-checkout{
-    width: max-content;
     height: 50px;
+    width: 300px;
+    margin-left: -48px;
 }
 .add-address{
     font-size: 12px;

@@ -8,6 +8,7 @@ const state = reactive({
   user: null,
   isHeaderAndFooterShow: true,
   isShowLogin: false,
+  tabProfile : 1,
   cartNumber: localStorage.getItem("cartNumber"),
   /**
    * Mảng chứa các toast message

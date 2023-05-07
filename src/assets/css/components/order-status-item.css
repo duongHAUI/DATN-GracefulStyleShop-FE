@@ -2,9 +2,11 @@
     display: flex;
     justify-content: space-between;
     padding: 12px 24px;
-    position: relative;
     background-color: white;
     border-radius: 0 0 8px 8px;
+}
+.order-item-detail{
+    position: relative;
 }
 .progressbar{
     display: flex;
@@ -18,8 +20,10 @@
     width: max-content;
     padding: 2px 4px;
     z-index: 9;
+    top: 191px;
     border: 2px solid #2dc258;
-    transform: rotate(-10deg);
+    left: 83%;
+    transform: rotate(-8deg);
 }
 .step{
     flex: 1;
@@ -45,12 +49,20 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    border: 3px solid #2dc258;
+    border: 3px solid #b0b3b1;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     background-color: white;
+}
+.step-icon.active{
+    border: 3px solid #2dc258;
+}
+.step-title{
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 2px;
 }
 .step-icon div{
     font-size: 20px;
@@ -69,7 +81,11 @@
 .order-item-detail-info{
     display: flex;
     background-color: white;
-    padding: 24px 0;
+    padding-top: 24px;
+}
+.order-method{
+    background-color: white;
+    padding: 0 24px;
 }
 .info-address{
     flex-basis: 30%;
@@ -107,12 +123,13 @@
     justify-content: flex-end;
     align-items: center;
     text-align: right;
-    border-bottom: 1px dotted rgba(0,0,0,.09);
+    border-bottom: 1px dotted rgba(0, 0, 0, 0.132);
+    border-top: 1px dotted rgba(0, 0, 0, 0.132);
 }
 ._8kMYJ3{
     padding: 13px 10px;
     color: rgba(0,0,0,.54);
-    font-size: 12px;
+    font-size: 13px;
 }
 ._8kMYJ3 > span{
     display: inline-block;
@@ -120,7 +137,7 @@
 }
 .CxyZBG{
     padding: 13px 0 13px 10px;
-    width: 240px;
+    width: 200px;
     border-left: 1px dotted rgba(0,0,0,.09);
     justify-content: flex-end;
     word-wrap: break-word;
@@ -128,4 +145,8 @@
 }
 .CxyZBG > div{
     display: block;
+}
+.profile-tab-item-2.active,
+.profile-tab-item-1.active{
+    color: red;
 }

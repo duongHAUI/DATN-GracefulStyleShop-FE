@@ -7,44 +7,42 @@
     <div class="paid">{{getStatusPaid(order.IsPaid)}}</div> 
     <ul class="progressbar">
       <div class="step">
-        <div class="step-icon">
+        <div class="step-icon" :class="{active: setActiveStep(1)}" >
           <div><i class="fa-solid fa-receipt"></i></div>
         </div>
         <div class="step-title">Chờ xác nhận</div>
-        <div class="hr-step active"></div>
+        <div class="hr-step" :class="{active : setActiveHrProcess(1)}"></div>
       </div>
       <div class="step">
-        <div class="step-icon">
+        <div class="step-icon"  :class="{active: setActiveStep(2)}">
           <div><i class="fa-solid fa-receipt"></i></div>
         </div>
         <div class="step-title">Đã xác nhận</div>
-
-        <div class="hr-step"></div>
+        <div class="hr-step" :class="{active : setActiveHrProcess(2)}"></div>
       </div>
       <div class="step">
-        <div class="step-icon">
+        <div class="step-icon"  :class="{active: setActiveStep(3)}">
           <div><i class="fa-solid fa-receipt"></i></div>
         </div>
         <div class="step-title">Đang giao</div>
-
-        <div class="hr-step"></div>
+        <div class="hr-step" :class="{active : setActiveHrProcess(3)}"></div>
       </div>
       <div class="step">
-        <div class="step-icon">
+        <div class="step-icon"  :class="{active: setActiveStep(4)}">
           <div><i class="fa-solid fa-receipt"></i></div>
         </div>
         <div class="step-title">Đã nhận hàng</div>
-        <div class="hr-step"></div>
+        <div class="hr-step" :class="{active : setActiveHrProcess(4)}"></div>
       </div>
-      <div class="step">
-        <div class="step-icon">
+      <div class="step" v-if="order.Status == status.DaHuy">
+        <div class="step-icon" :class="{active: setActiveStep(5)}">
           <div><i class="fa-solid fa-receipt"></i></div>
         </div>
         <div class="step-title">Đã hủy</div>
-        <div class="hr-step"></div>
+        <div class="hr-step" :class="{active : setActiveHrProcess(5)}"></div>
       </div>
       <div class="step">
-        <div class="step-icon">
+        <div class="step-icon"  :class="{active: setActiveStep(6)}">
           <div><i class="fa-solid fa-receipt"></i></div>
         </div>
         <div class="step-title">Hoàn thành</div>
@@ -94,7 +92,11 @@
             <div>{{$state.formatPrice(order.TotalPrice)}}</div>
           </div>
         </div>
-        <div class="TokOv1">
+        
+      </div>
+    </div>
+    <div class="order-method">
+      <div class="TokOv1">
           <div class="_8kMYJ3">
             <span>Phương thức giao hàng</span>
           </div>
@@ -110,7 +112,6 @@
             <div>{{getPaymentMethod(order.PaymentMethod)}}</div>
           </div>
         </div>
-      </div>
     </div>
   </div>
 </template>
@@ -128,11 +129,15 @@ export default {
     OrderId : String,
   },
   created: async function(){
+    
+  },
+  mounted(){
   },
   data() {
     return {
       order : {
-      }
+      },
+      status : enumD.enumStatusOrder
     };
   },
   methods:{
@@ -158,13 +163,48 @@ export default {
         default:
           break;
       }
+    },
+    setActiveStep(step){
+      switch (step) {
+        case 1:
+          return this.order.Status > 0;
+        case 2:
+          return this.order.Status > 1;
+        case 3:
+          return this.order.Status > 2;
+        case 4:
+          return this.order.Status > 3;
+        case 5:
+          return this.order.Status > 4;
+        case 6 :
+        return this.order.Status > 4;
+        default:
+          break;
+      }
+    },
+    setActiveHrProcess(step){
+      switch (step) {
+        case 1:
+          return this.order.Status > 1;
+        case 2:
+          return this.order.Status > 2;
+        case 3:
+          return this.order.Status > 3;
+        case 4:
+          return this.order.Status > 4;
+        case 5:
+          return this.order.Status > 5;
+        case 6 :
+        return this.order.Status > 5;
+        default:
+          break;
+      }
     }
   },
   watch:{
     OrderId  :async  function () {
       if(this.OrderId){
-        // eslint-disable-next-line no-debugger
-        debugger
+        window.scrollTo(0, 0);
         const res = await new baseApi("Order").getById(this.OrderId);
         this.order = res;
       }

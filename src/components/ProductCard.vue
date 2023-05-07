@@ -11,7 +11,7 @@
       </Slide>
     </Carousel>
     <!-- </router-link> -->
-    <div class="p-card-content">
+    <div class="p-card-content" @click="addToCart">
       <div class="title truncate_two-row">{{ item.ProductName }}</div>
       <div class="proloop-price">
         <div class="price">{{ $state.formatPrice(item.PriceSale) }}</div>
@@ -30,9 +30,6 @@
         ></div>
       </div>
     </div>
-    <div class="action-cart">
-      <m-button @click="addToCart">Thêm vào giỏ</m-button>
-    </div>
   </div>
 </template>
 <script>
@@ -40,7 +37,6 @@ import "vue3-carousel/dist/carousel.css";
 import { Carousel, Slide } from "vue3-carousel";
 import common from "../common/common.js";
 import msEnum from "../common/enum.js";
-import MButton from "./button/MButton.vue";
 export default {
   name: "ProductCard",
   data() {
@@ -51,7 +47,6 @@ export default {
   components: {
     Carousel,
     Slide,
-    MButton,
   },
   props: {
     item: Object,

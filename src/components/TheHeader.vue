@@ -1,7 +1,7 @@
 <template>
   <header class="header" v-if="$state.isHeaderAndFooterShow">
     <div class="logo">
-      <a href="/"><img src="../assets/img/logo.webp" alt="" /></a>
+      <a href="/"><img src="@/assets/img/logo.png" alt="" /></a>
     </div>
     <div class="menu">
       <li class="menu-item">Nam</li>
@@ -63,8 +63,8 @@
                   <div class="site_account_inner">
                     <ul>
                       <li><a href="/account/profile">Tài khoản của tôi</a></li>
-                      <li>
-                        <a href="/account/addresses">Danh sách địa chỉ</a>
+                      <li @click="goToOrder">
+                        <a>Đơn hàng đã đặt</a>
                       </li>
                       <li><a @click="logout">Đăng xuất</a></li>
                     </ul>
@@ -103,7 +103,9 @@
                 d="m360.355469 322.332031c-30.046875 0-54.402344 24.355469-54.402344 54.402344 0 30.042969 24.355469 54.398437 54.402344 54.398437 30.042969 0 54.398437-24.355468 54.398437-54.398437-.03125-30.03125-24.367187-54.371094-54.398437-54.402344zm0 88.800781c-19 0-34.402344-15.402343-34.402344-34.398437 0-19 15.402344-34.402344 34.402344-34.402344 18.996093 0 34.398437 15.402344 34.398437 34.402344 0 18.996094-15.402344 34.398437-34.398437 34.398437zm0 0"
               ></path>
             </svg>
-            <div class="number-pro" v-if="$state.user">{{ $state.cartNumber }}</div>
+            <div class="number-pro" v-if="$state.user">
+              {{ $state.cartNumber }}
+            </div>
           </div>
           <div class="hd-card">Giỏ hàng</div>
         </div>
@@ -132,8 +134,12 @@
               alt="Không có dữ liệu"
             />
             <div>Không có sản phẩm trong giỏ hàng</div>
-          </div> 
-          <m-button backgroundColor="#ff0000" width="100%" @click="rediricCart" v-if="$state.cartNumber != 0"
+          </div>
+          <m-button
+            backgroundColor="#ff0000"
+            width="100%"
+            @click="rediricCart"
+            v-if="$state.cartNumber != 0"
             >Xem giỏ hàng</m-button
           >
         </div>
@@ -166,6 +172,13 @@ export default {
     rediricCart() {
       this.isShowCartView = false;
       this.$router.push("/cart");
+    },
+    goToOrder() {
+      this.isShowCartView = false;
+      this.$state.tabProfile = 3;
+      this.$router.push("/account/profile").then(() => {
+        window.scrollTo(0, 0);
+      });
     },
     async logout() {
       try {
@@ -223,7 +236,7 @@ export default {
   text-align: center;
   display: block;
 }
-.m__e-list-empty img{
+.m__e-list-empty img {
   width: 100px;
 }
 </style>

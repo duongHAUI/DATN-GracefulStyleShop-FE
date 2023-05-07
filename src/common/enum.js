@@ -4,18 +4,10 @@ const enumD = {
     blue : 2,
     white : 3,
   },
-  enumStatusCheckout:{
-    ChoXacNhan : 1,
-    ChoLayHang : 2,
-    DangVanChuyen : 3,
-    DaNhanHang  :4,
-    HoanThanh : 5,
-    Huy : 6
-  },
   enumStatusOrder:{
     TatCa : 0,
     ChoXacNhan : 1,
-    ChoLayHang : 2,
+    DaXacNhan : 2,
     DangGiao : 3,
     DaNhanHang: 4,
     HoanThanh  :5,

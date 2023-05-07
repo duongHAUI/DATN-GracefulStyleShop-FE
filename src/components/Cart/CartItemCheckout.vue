@@ -3,7 +3,7 @@
     <div class="media-leff">
       <div class="item-img">
         <img
-          :src="item.ImageLink"
+          :src="item.ImageLink ?? item.Images[0].ImageLink"
           alt=""
         />
         <div class="item-remove">{{item.Quantity}}</div>

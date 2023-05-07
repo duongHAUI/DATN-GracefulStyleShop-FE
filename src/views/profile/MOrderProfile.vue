@@ -7,56 +7,56 @@
     <div class="order-status">
       <div
         class="status-item"
-        :class="tabActive == enumStatus.TatCa ? 'active' : ''"
+        :class="{active : tabActive == enumStatus.TatCa}"
         @click="changeTab(enumStatus.TatCa)"
       >
         Tất cả
       </div>
       <div
         class="status-item"
-        :class="tabActive == enumStatus.ChoThanhToan ? 'active' : ''"
-        @click="changeTab(enumStatus.ChoThanhToan)"
+        :class="{active : tabActive == enumStatus.ChoXacNhan}"
+        @click="changeTab(enumStatus.ChoXacNhan)"
       >
-        Chờ thanh toán
+        Chờ xác nhận
       </div>
       <div
         class="status-item"
-        :class="tabActive == enumStatus.VanChuyen ? 'active' : ''"
-        @click="changeTab(enumStatus.VanChuyen)"
+        :class="{active : tabActive == enumStatus.ChoLayHang}"
+        @click="changeTab(enumStatus.ChoLayHang)"
       >
-        Vận chuyển
+        Chờ lấy hàng
       </div>
       <div
         class="status-item"
-        :class="tabActive == enumStatus.DangGiao ? 'active' : ''"
+        :class="{active : tabActive == enumStatus.DangGiao}"
         @click="changeTab(enumStatus.DangGiao)"
       >
-        Đang giao
+        Đang vận chuyển
       </div>
       <div
         class="status-item"
-        :class="tabActive == enumStatus.HoanThanh ? 'active' : ''"
+        :class="{active : tabActive == enumStatus.DaNhanHang}"
+        @click="changeTab(enumStatus.DaNhanHang)"
+      >
+        Đã nhận hàng
+      </div>
+      <div
+        class="status-item"
+        :class="{active : tabActive == enumStatus.HoanThanh}"
         @click="changeTab(enumStatus.HoanThanh)"
       >
         Hoàn thành
       </div>
       <div
         class="status-item"
-        :class="tabActive == enumStatus.DaHuy ? 'active' : ''"
+        :class="{active : tabActive == enumStatus.DaHuy}"
         @click="changeTab(enumStatus.DaHuy)"
       >
         Đã hủy
       </div>
-      <div
-        class="status-item"
-        :class="tabActive == enumStatus.TraHang ? 'active' : ''"
-        @click="changeTab(enumStatus.TraHang)"
-      >
-        Trả hàng
-      </div>
     </div>
     <div class="order-search">
-      <m-input classIcon="icon-search" placeholder="Tìm kiếm đơn hàng" />
+      <m-input classIcon="icon-search" v-model="textSearch" @update:modelValue="searchData" placeholder="Tìm kiếm đơn hàng" />
     </div>
     <div class="order-tab-item">
       <m-order-item v-for="order,index in orders" :key="index" :item="order" @show-detail="showOrderDetail" />
@@ -83,9 +83,7 @@ export default {
   },
   created: async function(){
     try {
-      const res = await new baseApi("Order").getByFilter({});
-      console.log(res);
-      this.orders = res.Data;
+      await this.getData();
     } catch (error) {
       console.log(error);
     }
@@ -94,83 +92,39 @@ export default {
     return {
       enumStatus: enumD.enumStatusOrder,
       tabActive: 0,
-      item: {
-        CartId: "6a4c1adb-db0c-45aa-bdc2-e4f98dfae952",
-        Quantity: 1,
-        PriceSale: 85000,
-        Discount: 30,
-        CreatedAt: "2023-05-02T23:10:37",
-        ModifiedAt: "2023-05-02T23:10:37",
-        CustomerId: "6efa3a3f-83a9-4f01-87fb-8a678e53d013",
-        ProductVariantId: "119b4ebd-e3f6-4fd6-88c9-2bf0197d943f",
-        ProductId: "0a90bce8-c221-41e1-8d97-1e8d8e40f519",
-        ProductName: "Áo T-Shirt Nữ Cổ Tròn I9TSH554I",
-        ColorName: "Vàng",
-        SizeCode: "L",
-        Images: [
-          {
-            ImageId: "26ab4b7a-1b62-4918-a5ec-d4f9350acad7",
-            ImageName: "Mau.PNG",
-            ImageLink:
-              "http://res.cloudinary.com/dqywrcgrr/image/upload/v1681464239/26ab4b7a-1b62-4918-a5ec-d4f9350acad7.png",
-            ObjectId: "00000000-0000-0000-0000-000000000000",
-            IsDefault: 0,
-          },
-          {
-            ImageId: "624980d5-8a8e-42be-9345-a5029cdd882e",
-            ImageName: "XanhThan.PNG",
-            ImageLink:
-              "http://res.cloudinary.com/dqywrcgrr/image/upload/v1681464242/624980d5-8a8e-42be-9345-a5029cdd882e.png",
-            ObjectId: "00000000-0000-0000-0000-000000000000",
-            IsDefault: 0,
-          },
-          {
-            ImageId: "90480742-146f-4043-a39d-c6ec6f6ffa0f",
-            ImageName: "Do.PNG",
-            ImageLink:
-              "http://res.cloudinary.com/dqywrcgrr/image/upload/v1681464237/90480742-146f-4043-a39d-c6ec6f6ffa0f.png",
-            ObjectId: "00000000-0000-0000-0000-000000000000",
-            IsDefault: 0,
-          },
-          {
-            ImageId: "ac6bddcb-a5dd-4609-9c72-01072bfb7cfd",
-            ImageName: "Den1.PNG",
-            ImageLink:
-              "http://res.cloudinary.com/dqywrcgrr/image/upload/v1681464236/ac6bddcb-a5dd-4609-9c72-01072bfb7cfd.png",
-            ObjectId: "00000000-0000-0000-0000-000000000000",
-            IsDefault: 0,
-          },
-          {
-            ImageId: "e886037a-f04a-4228-b21d-63861f5760cf",
-            ImageName: "Trang.PNG",
-            ImageLink:
-              "http://res.cloudinary.com/dqywrcgrr/image/upload/v1681464240/e886037a-f04a-4228-b21d-63861f5760cf.png",
-            ObjectId: "00000000-0000-0000-0000-000000000000",
-            IsDefault: 0,
-          },
-        ],
-        TotalPrice: 59500,
-        TotalDel: 85000,
-        PriceDel: 59500,
-        ImageId: "00000000-0000-0000-0000-000000000000",
-        ImageName: null,
-        ImageLink: null,
-        ObjectId: "00000000-0000-0000-0000-000000000000",
-        IsDefault: 0,
-      },
       showDetail : false,
       OrderId : null,
-      orders :[]
+      orders :[],
+      textSearch: ""
     };
   },
 
   methods: {
-    changeTab(tab) {
+    async changeTab(tab) {
       this.tabActive = tab;
+      await this.getData();
     },
     showOrderDetail(id){
       this.OrderId = id;
       this.showDetail = true;
+    },
+    /**
+     * Hàm search
+     */
+    async searchData() {
+      try {
+        if (this.timeout) clearTimeout(this.timeout);
+        // Xét thời gian tìm kiếm 0,5s
+        this.timeout = setTimeout(async () => {
+        await this.getData();
+        }, 500); // delay
+      } catch (error) {
+        console.log("Lỗi search data : ", error);
+      }
+    },
+    async getData(){
+      const res =await new baseApi("Order").getByFilter({ Status : this.tabActive,TextSearch : this.textSearch });
+      this.orders = res.Data;
     }
   },
 };
