@@ -2,7 +2,8 @@
   <div>
     <the-header />
       <div class="m-main-content">
-          <router-view />
+        <router-view />
+        <m-search />
       </div>
     <the-footer />
   </div>
@@ -12,12 +13,14 @@
 import TheHeader from "@/components/TheHeader.vue";
 import TheFooter from "@/components/TheFooter.vue";
 import MToastList from "@/components/toast-list/MToastList.vue";
+import MSearch from '@/components/search/MSearch.vue';
 export default {
   name: "MainLayout",
   components: {
     TheHeader,
     TheFooter,
-    MToastList
+    MToastList,
+    MSearch
   }
 };
 </script>

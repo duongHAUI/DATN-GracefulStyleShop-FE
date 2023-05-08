@@ -176,9 +176,9 @@
                 v-model="paymentMethod"
                 checked
               />
-              <img
+              <!-- <img
                 src="https://hstatic.net/0/0/global/design/seller/image/payment/cod.svg?v=4"
-              />
+              /> -->
               <label for="COD">Thanh toán khi giao hàng (COD)</label>
             </div>
           </div>

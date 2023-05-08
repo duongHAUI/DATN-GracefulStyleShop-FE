@@ -84,6 +84,7 @@
           </div>
         </div>
       </div>
+      <div class="p-quantity-detail">Số lượng : {{ sizeActive.ProductVariantQuantity }}</div>
       <hr />
       <div class="view-size-guide m-b-8">
         <a href="">Hướng dẫn chọn size</a>
@@ -221,13 +222,15 @@ export default {
       this.currentSlide = val;
     },
     quantityNumber(qty) {
+      // eslint-disable-next-line no-debugger
+      debugger
       var number = this.quantity + qty;
-      if (number > 0) {
+      if (number > 0 && number <= this.sizeActive.ProductVariantQuantity) {
         this.quantity = number;
       }
     },
     changeQuantity() {
-      if (this.quantity < 1 || this.quantity > 100000) {
+      if (this.quantity < 1 || this.quantity > 100000 || this.quantity > this.sizeActive.ProductVariantQuantity) {
         this.quantity = 1;
       }
     },
@@ -245,7 +248,8 @@ export default {
       this.sizeActive = color.Sizes[0] ? color.Sizes[0] : null;
     },
     activeSize(size) {
-      this.sizeActive = size;
+      this.sizeActive.SizeId = size.SizeId;
+      this.sizeActive.SizeCode = size.SizeCode;
     },
     async addToCart() {
       try {
@@ -387,6 +391,10 @@ export default {
   border: 1px solid #878c8f;
   background-color: red;
   margin-right: 16px;
+}
+.p-quantity-detail{
+  font-size: 12px;
+  font-weight: 500;
 }
 .product-color-item.active {
   outline: 2px solid blue;

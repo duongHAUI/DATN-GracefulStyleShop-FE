@@ -18,12 +18,35 @@
           :settings="config.settingsPromotion"
           :breakpoints="config.breakpointsPromotion"
         >
-          <Slide v-for="item in 10" :key="item">
+          <Slide :key="1">
             <div class="promotion-content-item">
-              <div class="promotion-content-title">Sale Up to 80%</div>
+              <div class="promotion-content-title">GIẢM 70K với FUNDIIN</div>
               <span
-                >Thời trang TokyoStyle ưu đãi tới 80%. Số lượng có hạn - Shopping
-                ngay!</span
+                >Nhập mã duong70 - Giảm 70K cho đơn hàng đầu tiên giá trị từ 500K thanh toán qua Fundiin</span
+              >
+            </div>
+          </Slide>
+          <Slide :key="2">
+            <div class="promotion-content-item">
+              <div class="promotion-content-title">Chống nắng Sunstop từ 299K</div>
+              <span
+                >Cản 98% tia UV - Bảo hành 1 đổi 1 trong 14 ngày</span
+              >
+            </div>
+          </Slide>
+          <Slide :key="3">
+            <div class="promotion-content-item">
+              <div class="promotion-content-title">GIẢM 70K với FUNDIIN</div>
+              <span
+                >Nhập mã duong70 - Giảm 70K cho đơn hàng đầu tiên giá trị từ 500K thanh toán qua Fundiin</span
+              >
+            </div>
+          </Slide>
+          <Slide :key="4">
+            <div class="promotion-content-item">
+              <div class="promotion-content-title">GIẢM 70K với FUNDIIN</div>
+              <span
+                >Nhập mã duong70 - Giảm 70K cho đơn hàng đầu tiên giá trị từ 500K thanh toán qua Fundiin</span
               >
             </div>
           </Slide>
@@ -82,7 +105,7 @@
       </div>
     <!-- Tin tức start-->
     <div class="home-news">
-      <div class="list-news-title">Tin tức TokyoStyle</div>
+      <div class="list-news-title">Tin tức DuongShop</div>
       <div class="list-news">
           <news-item v-for="index in 9" :key="index" />
       </div>

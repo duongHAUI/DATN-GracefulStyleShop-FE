@@ -4,13 +4,13 @@
       <a href="/"><img src="@/assets/img/logo.png" alt="" /></a>
     </div>
     <div class="menu">
-      <li class="menu-item">Nam</li>
-      <li class="menu-item">Nữ</li>
-      <li class="menu-item">Làm đẹp</li>
-      <li class="menu-item">Nam</li>
+      <li class="menu-item">Trang chủ</li>
+      <li class="menu-item">Sản phẩm</li>
+      <li class="menu-item">Giảm giá</li>
+      <li class="menu-item">Tin tức</li>
     </div>
     <div class="action">
-      <div class="search">
+      <div class="search" @click="$state.isSearch = true">
         <div class="icon icon-search"></div>
       </div>
       <div class="action_setting">
