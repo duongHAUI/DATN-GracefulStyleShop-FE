@@ -94,6 +94,7 @@ import MButton from "./button/MButton.vue";
 import MInput from "./input/MInput.vue";
 import authApi from "@/api/authApi";
 import enumD from '@/common/enum';
+import cartApi from '@/api/cartApi';
 export default {
   name: "SiteAccount",
   components: {
@@ -129,8 +130,10 @@ export default {
           this.$state.user = res.Data.Customer;
           this.$state.setUser(res.Data.Customer);
           this.$state.isShowLogin = false;
+          const cartNumber = await new cartApi("Cart").cartNumber();
+          this.$state.cartNumber = cartNumber?.data == 0 ? 0 : cartNumber;
+          this.$router.push("/");
         }
-        window.location.reload();
       } catch (error) {
         console.log(error);
         var res = error?.response?.data;

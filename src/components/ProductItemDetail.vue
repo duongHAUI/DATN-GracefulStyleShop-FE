@@ -283,8 +283,7 @@ export default {
       }
     },
     async toCart() {
-      await this.addToCart();
-      this.$router.push("/cart");
+      this.$router.push("/checkout");
     },
   },
   watch: {

@@ -48,7 +48,7 @@ const common = {
     switch (status) {
       case msEnum.enumStatusOrder.ChoXacNhan:
         return "Chờ xác nhận";
-      case msEnum.enumStatusOrder.ChoLayHang:
+      case msEnum.enumStatusOrder.DaXacNhan:
         return "Chờ lấy hàng";
       case msEnum.enumStatusOrder.DangGiao:
         return "Đang giao";

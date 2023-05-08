@@ -4,7 +4,7 @@
       <a href="/"><img src="@/assets/img/logo.png" alt="" /></a>
     </div>
     <div class="menu">
-      <li class="menu-item">Trang chủ</li>
+      <li class="menu-item"><a href="/">Trang chủ</a></li>
       <li class="menu-item">Sản phẩm</li>
       <li class="menu-item">Giảm giá</li>
       <li class="menu-item">Tin tức</li>
@@ -238,5 +238,8 @@ export default {
 }
 .m__e-list-empty img {
   width: 100px;
+}
+.menu li a {
+  color: unset;
 }
 </style>

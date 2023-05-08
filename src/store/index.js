@@ -6,6 +6,10 @@ import { reactive } from "vue";
 const state = reactive({
   isLogin: false,
   user: null,
+  isShowWarning: false,
+  WarningMessage : "",
+  isActiveWarning: false,
+  OrderId : null,
   isHeaderAndFooterShow: true,
   isShowLogin: false,
   tabProfile : 1,

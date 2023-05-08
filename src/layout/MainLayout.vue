@@ -8,6 +8,7 @@
     <the-footer />
   </div>
   <MToastList  />
+  
 </template>
 <script>
 import TheHeader from "@/components/TheHeader.vue";
@@ -20,7 +21,7 @@ export default {
     TheHeader,
     TheFooter,
     MToastList,
-    MSearch
+    MSearch,
   }
 };
 </script>

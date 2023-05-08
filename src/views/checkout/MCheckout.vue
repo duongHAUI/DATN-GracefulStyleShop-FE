@@ -353,6 +353,7 @@ export default {
         const res = await new baseApi("Order").create(formBody);
         if(!res.ErrorCode){
           this.$state.tabProfile = 3;
+          this.$state.OrderId = res?.Data;
           this.$router.push("/account/profile").then(() => {
           window.scrollTo(0, 0);
       });

@@ -2,7 +2,7 @@
   <div
     class="order-profile"
     v-if="isShow && !showDetail"
-    :style="{ display: hidden ? 'none' : 'unset' }"
+    :style="{ display: hidden || showDetail ? 'none' : 'unset' }"
   >
     <div class="order-status">
       <div
@@ -21,8 +21,8 @@
       </div>
       <div
         class="status-item"
-        :class="{active : tabActive == enumStatus.ChoLayHang}"
-        @click="changeTab(enumStatus.ChoLayHang)"
+        :class="{active : tabActive == enumStatus.DaXacNhan}"
+        @click="changeTab(enumStatus.DaXacNhan)"
       >
         Chờ lấy hàng
       </div>
@@ -84,6 +84,10 @@ export default {
   created: async function(){
     try {
       await this.getData();
+      if(this.$state.OrderId){
+        this.OrderId = this.$state.OrderId;
+        this.showDetail = true;
+      }
     } catch (error) {
       console.log(error);
     }
@@ -127,6 +131,11 @@ export default {
       this.orders = res.Data;
     }
   },
+  watch:{
+     '$state.tabProfile'(){
+        this.showDetail = false;
+     }
+  }
 };
 </script>
 <style></style>
