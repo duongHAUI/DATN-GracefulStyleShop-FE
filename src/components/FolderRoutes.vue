@@ -7,7 +7,7 @@
       :style="{
         color: routesNow(index) ? 'var(--color-text-grey)' : 'black',
       }"
-      >{{item.title}}{{!routesNow(index) ? " > " : ""}}</a
+      >{{item.title}}{{!routesNow(index) ? " / " : ""}}</a
     >
   </div>
 </template>
@@ -26,6 +26,8 @@ export default {
   },
   methods:{
     routesNow(index){
+      // eslint-disable-next-line no-debugger
+      debugger
         return index === this.folderRoutesTest?.length - 2;
     }
   }

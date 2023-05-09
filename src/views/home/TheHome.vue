@@ -22,7 +22,7 @@
             <div class="promotion-content-item">
               <div class="promotion-content-title">GIẢM 70K với FUNDIIN</div>
               <span
-                >Nhập mã duong70 - Giảm 70K cho đơn hàng đầu tiên giá trị từ 500K thanh toán qua Fundiin</span
+                >Giảm 70K cho đơn hàng đầu tiên giá trị từ 500K thanh toán qua Fundiin</span
               >
             </div>
           </Slide>
@@ -38,7 +38,7 @@
             <div class="promotion-content-item">
               <div class="promotion-content-title">GIẢM 70K với FUNDIIN</div>
               <span
-                >Nhập mã duong70 - Giảm 70K cho đơn hàng đầu tiên giá trị từ 500K thanh toán qua Fundiin</span
+                >Giảm 70K cho đơn hàng đầu tiên giá trị từ 500K thanh toán qua Fundiin</span
               >
             </div>
           </Slide>
@@ -46,7 +46,7 @@
             <div class="promotion-content-item">
               <div class="promotion-content-title">GIẢM 70K với FUNDIIN</div>
               <span
-                >Nhập mã duong70 - Giảm 70K cho đơn hàng đầu tiên giá trị từ 500K thanh toán qua Fundiin</span
+                >Giảm 70K cho đơn hàng đầu tiên giá trị từ 500K thanh toán qua Fundiin</span
               >
             </div>
           </Slide>
@@ -115,9 +115,7 @@
     <!-- Tin tức End -->
     <!-- Donors Start -->
     <div class="donors">
-      
     </div>
-
     <!-- Donors End -->
   </div>
 </template>

@@ -1,14 +1,13 @@
 <template>
   <div>
     <the-header />
-      <div class="m-main-content">
+      <div class="m-main-content" ref="content">
         <router-view />
-        <m-search />
       </div>
-    <the-footer />
+    <the-footer ref="footerMain" :style="styleFooter" />
   </div>
+  <m-search v-if="$state.isSearch" />
   <MToastList  />
-  
 </template>
 <script>
 import TheHeader from "@/components/TheHeader.vue";
@@ -22,6 +21,26 @@ export default {
     TheFooter,
     MToastList,
     MSearch,
+  },
+  data() {
+    return {
+      styleFooter: {}
+    }
+  },
+  updated(){
+    const contentHeight = this.$refs.content.clientHeight;
+    const footerHeight = this.$refs.footerMain.$refs.footer.clientHeight;
+    if((contentHeight + footerHeight) < window.innerHeight){
+      this.styleFooter = {
+        position: 'absolute',
+        bottom: 0
+      }
+    }else{
+      this.styleFooter = {
+        position: 'absolute',
+        bottom: 'unset'
+      }
+    }
   }
 };
 </script>

@@ -77,7 +77,7 @@ export default {
     },
     async quantityNumber(qty) {
       var number = this.quantity + qty;
-      if (number > 0) {
+      if (number > 0 && number <= this.item.ProVariantQuantity) {
         this.quantity = number;
       } else {
         return;

@@ -1,22 +1,22 @@
 <template>
-  <div class="search-item" @click="$router.push(`/products/${item.ProductId}`)">
+  <div class="search-item" @click="toProductDetail">
     <div class="item-ult">
       <div class="thumbs">
         <a
         >
           <img
             alt="Bộ Quần Áo Nữ Áo I9CLS555K"
-            :src="item.Images[0].ImageLink"
+            :src="item?.Images[0].ImageLink"
           />
         </a>
       </div>
       <div class="title">
         <a
-          >{{item.ProductName}}</a
+          >{{item?.ProductName}}</a
         >
         <p class="f-initial">
-          {{$state.formatPrice(item.PriceDel)}}
-          <del> {{$state.formatPrice(item.PriceDel)}}</del>
+          {{$state.formatPrice(item?.PriceDel)}}
+          <del> {{$state.formatPrice(item?.PriceDel)}}</del>
         </p>
       </div>
     </div>
@@ -27,17 +27,25 @@ export default {
   props: {
     item: Object,
   },
+  methods:{
+    toProductDetail(){
+      this.$state.isSearch = false;
+      this.$router.push(`/products/${this.item?.ProductId}`);
+      window.scrollTo(0, 0);
+    }
+  }
 };
 </script>
 <style scoped>
 .item-ult {
-    padding: 12px 0;
+    padding: 12px;
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
     align-items: center;
     -ms-flex-direction: row-reverse;
     flex-direction: row-reverse;
+    cursor: pointer;
 }
 .item-ult .thumbs {
     width: 50px;

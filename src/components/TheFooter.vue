@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer" v-if="$state.isHeaderAndFooterShow">
+  <footer class="footer" v-if="$state.isHeaderAndFooterShow" ref="footer" :style="style">
     <!-- Footer -->
     <MDBFooter :text="['center', 'lg-start', 'muted']">
       <!-- Section: Social media -->
@@ -183,6 +183,9 @@ export default {
     MDBCol,
     MDBContainer,
   },
+  props:{
+    style:Object
+  }
 };
 </script>
 <style scoped>
