@@ -5,7 +5,7 @@
     </div>
     <div class="menu">
       <li class="menu-item"><a href="/">Trang chủ</a></li>
-      <li class="menu-item">Sản phẩm</li>
+      <li class="menu-item"><a href="/products">Sản phẩm</a></li>
       <li class="menu-item">Giảm giá</li>
       <li class="menu-item">Tin tức</li>
     </div>
@@ -182,13 +182,13 @@ export default {
     },
     async logout() {
       try {
-        // eslint-disable-next-line no-debugger
-        debugger;
         var res = await new authApi().signout(localStorage.getItem("token"));
         if (res) {
           localStorage.removeItem("user");
           localStorage.removeItem("token");
+          this.isShowSettingUser = false;
           window.location.reload();
+          window.location.assign('/');
         }
       } catch (error) {
         console.log(error);

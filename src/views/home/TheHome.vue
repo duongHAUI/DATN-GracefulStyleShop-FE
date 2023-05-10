@@ -59,7 +59,7 @@
       <img src="../../assets/img/banner/banner-1.webp" alt="" />
     </div>
     <div class="list-product">
-      <div class="list-product-title">Sản phẩm bán chạy</div>
+      <div class="list-product-title">Sản phẩm mới nhất</div>
       <Carousel
         :settings="config.settingsProduct"
         :breakpoints="config.breakpointsProducts"
@@ -78,19 +78,23 @@
         :settings="config.settingsProduct"
         :breakpoints="config.breakpointsProducts"
       >
-        <Slide v-for="item in config.products" :key="item">
+        <Slide v-for="item in config.productRelated" :key="item">
           <product-card :item="item" />
         </Slide>
       </Carousel>
       <div class="m-t-16"></div>
+    </div>
+    <div class="list-product">
+      <div class="list-product-title">Sản phẩm giảm giá</div>
       <Carousel
         :settings="config.settingsProduct"
         :breakpoints="config.breakpointsProducts"
       >
-        <Slide v-for="item in config.products" :key="item">
+        <Slide v-for="item in config.productDiscount" :key="item">
           <product-card :item="item" />
         </Slide>
       </Carousel>
+      <div class="m-t-16"></div>
     </div>
     <div class="view-products">
         <v-btn
@@ -138,11 +142,22 @@ export default {
     NewsItem
   },
   created: async function() {
-    this.FilterType = enumD.filterProductType.selling;
-    var res = await new baseApi("Product").getByFilterDetail(this.paramsFilter);
-    this.config.products  = res.Data ? res.Data : [];
-    res = await new baseApi("Slider").getByFilter(this.paramsFilter);
+    var res = await new baseApi("Slider").getByFilter(this.paramsFilter);
     this.config.sliders  = res.Data ? res.Data : [];
+
+
+    this.FilterType = enumD.filterProductType.selling;
+    res = await new baseApi("Product").getByFilterDetail(this.paramsFilter);
+    this.config.products  = res.Data ? res.Data : [];
+
+    this.FilterType = enumD.filterProductType.new;
+    res = await new baseApi("Product").getByFilterDetail(this.paramsFilter);
+    this.config.productRelated  = res.Data ? res.Data : [];
+
+    this.FilterType = enumD.filterProductType.discount;
+    res = await new baseApi("Product").getByFilterDetail(this.paramsFilter);
+    this.config.productDiscount  = res.Data ? res.Data : [];
+    
   },
   data() {
     return {

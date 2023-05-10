@@ -61,6 +61,7 @@ class config {
     this.sliders = [];
     this.products = [];
     this.productRelated = [];
+    this.productDiscount = [];
   }
 }
 export default config;

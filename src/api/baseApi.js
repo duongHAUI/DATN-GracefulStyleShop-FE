@@ -20,6 +20,16 @@ class baseApi {
   /**
    * Lấy các item theo bộ lọc
    */
+  getFilterDynamic = () => {
+    try {
+      return axiosClient.post(this.baseUrl + "filter",{});
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  /**
+   * Lấy các item theo bộ lọc
+   */
   getByFilterDetail = (params) => {
     try {
       return axiosClient.post(this.baseUrl + "filter-detail", params);

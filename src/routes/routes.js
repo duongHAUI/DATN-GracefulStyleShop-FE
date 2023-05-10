@@ -6,7 +6,6 @@ import MRegister from "@/views/account/MRegister";
 import MCheckout from "@/views/checkout/MCheckout.vue";
 import MProfile from "@/views/profile/MProfile.vue";
 
-
 /**
  * Các routes của page
  */
