@@ -222,8 +222,6 @@ export default {
       this.currentSlide = val;
     },
     quantityNumber(qty) {
-      // eslint-disable-next-line no-debugger
-      debugger
       var number = this.quantity + qty;
       if (number > 0 && number <= this.sizeActive.ProductVariantQuantity) {
         this.quantity = number;

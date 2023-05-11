@@ -11,9 +11,19 @@
         />
         <h6 v-if="products.length == 0">Gợi ý sản phẩm</h6>
         <div class="list-product-saerch">
-            <m-search-item v-for="product,index in products" :key="index" :item="product" />
+          <m-search-item
+            v-for="(product, index) in products"
+            :key="index"
+            :item="product"
+          />
         </div>
-        <h6 class="total-product" v-if="products.length != 0">Xem thêm {{totalProduct}} sản phẩm</h6>
+        <h6
+          class="total-product"
+          v-if="products.length != 0"
+          @click="goToProductsAll"
+        >
+          Xem thêm {{ totalProduct }} sản phẩm
+        </h6>
       </div>
       <div class="logo">
         <a style="opacity: 0" href="/"
@@ -28,7 +38,7 @@
   </div>
 </template>
 <script>
-import baseApi from '@/api/baseApi';
+import baseApi from "@/api/baseApi";
 import MInput from "../input/MInput.vue";
 import MSearchItem from "./MSearchItem.vue";
 export default {
@@ -38,10 +48,10 @@ export default {
   },
   data() {
     return {
-        textSearch : "",
-        products : [],
-        totalProduct : 0
-    }
+      textSearch: "",
+      products: [],
+      totalProduct: 0,
+    };
   },
   methods: {
     async searchData(event) {
@@ -56,15 +66,23 @@ export default {
         console.log("Lỗi search data : ", error);
       }
     },
-    async getData(){
-        if(this.textSearch){
-            const res = await new baseApi("Product").getByFilterDetail({TextSearch: this.textSearch,PageNumber : 1,PageSize : 5});
-            this.products = res.Data;
-            this.totalProduct = res.Total;
-        }else{
-            this.products = [];
-        }
-    }
+    async getData() {
+      if (this.textSearch) {
+        const res = await new baseApi("Product").getByFilterDetail({
+          TextSearch: this.textSearch,
+          PageNumber: 1,
+          PageSize: 5,
+        });
+        this.products = res.Data;
+        this.totalProduct = res.Total;
+      } else {
+        this.products = [];
+      }
+    },
+    goToProductsAll() {
+      this.$state.isSearch = false;
+      this.$router.push("/products");
+    },
   },
 };
 </script>
@@ -90,26 +108,33 @@ export default {
 }
 .m-search-input {
   width: 100%;
+  flex-basis: 60%;
 }
 .m-search-input > h6 {
   text-align: center;
 }
-.list-product-saerch{
+.list-product-saerch {
   max-height: 500px;
- overflow-y: auto ;
+  overflow-y: auto;
+}
+.logo {
+  flex-basis: 20%;
 }
 .logo img {
-  height: 31%;
   width: 100%;
   -o-object-fit: cover;
   object-fit: cover;
+  height: 74px;
+  margin-top: 5px;
 }
 .close-search {
   position: absolute;
   right: 20px;
   top: 31px;
   padding: 4px;
-}.total-product{
-    text-align: center;
+}
+.total-product {
+  text-align: center;
+  cursor: pointer;
 }
 </style>
