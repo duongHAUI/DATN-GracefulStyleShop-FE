@@ -2,7 +2,7 @@
   <div class="checkout">
     <div class="checkout-address">
       <a href="/"
-        ><img src="@/assets/img/logo.png" alt="" class="img-checkout"
+        ><img src="@/assets/img/logo.webp" alt="" class="img-checkout"
       /></a>
       <FolderRoutes :folderRoutes="folderRoutes" />
       <h3 class="method-title">Thông tin giao hàng</h3>
@@ -69,52 +69,9 @@
           rows="2"
           class="form-control"
           v-model="formCheckout.Note"
+          placeholder="Nếu bạn có yêu cầu nào khác khi nhận hàng, xin hãy nhập ở đây"
         ></textarea>
       </div>
-      <!-- <div class="form__row" style="width: 100%">
-        <div class="form__row f-bw" style="width: 32%">
-          <MInput
-            textField="Địa chỉ"
-            v-model="AddressReceiveDefault.Address"
-            :required="true"
-            name="Address"
-            ref="Address"
-            :isReadonly="true"
-            :tabIndex="2"
-            :rules="[rules.NOT_EMPTY, `${rules.MAX_LENGTH}|100`]"
-            :errorMsg="errorMsgObject?.Address"
-            @message-error-input="handleBindMessageInput"
-          />
-        </div>
-        <div class="form__row f-bw" style="width: 32%">
-          <MInput
-            textField="Tỉnh"
-            v-model="AddressReceiveDefault.Address"
-            :required="true"
-            name="Address"
-            ref="Address"
-            :isReadonly="true"
-            :tabIndex="2"
-            :rules="[rules.NOT_EMPTY, `${rules.MAX_LENGTH}|100`]"
-            :errorMsg="errorMsgObject?.Address"
-            @message-error-input="handleBindMessageInput"
-          />
-        </div>
-        <div class="form__row f-bw" style="width: 32%">
-          <MInput
-            textField="Địa chỉ"
-            v-model="AddressReceiveDefault.Address"
-            :required="true"
-            name="Address"
-            ref="Address"
-            :isReadonly="true"
-            :tabIndex="2"
-            :rules="[rules.NOT_EMPTY, `${rules.MAX_LENGTH}|100`]"
-            :errorMsg="errorMsgObject?.Address"
-            @message-error-input="handleBindMessageInput"
-          />
-        </div>
-      </div> -->
       <div class="shipping-method">
         <h3 class="method-title">Phương thức vận chuyển</h3>
         <div class="method-list">
@@ -148,37 +105,32 @@
       <div class="payment-methods">
         <h3 class="method-title">Phương thức thanh toán</h3>
         <div class="method-list">
-          <!-- <div class="method-item">
+          <div class="method-item">
             <div class="method-left">
               <input
                 type="radio"
-                name="method"
+                name="payment-methods"
                 id="VNPAY"
-                :value="enumPayment.TTKLH"
-                v-model="ShippingPayment"
+                :value="enumPayment.ONLINE"
+                v-model="paymentMethod"
               />
-              <img
+              <!-- <img
                 src="https://hstatic.net/0/0/global/design/seller/image/payment/cod.svg?v=4"
                 alt=""
-              />
-              <label for="VNPAY"
-                >Thẻ ATM/Visa/Master/JCB/QR Pay qua cổng VNPAY</label
-              >
+              /> -->
+              <label for="VNPAY">Thanh toán trực tuyến</label>
             </div>
-          </div> -->
+          </div>
           <div class="method-item">
             <div class="method-left">
               <input
                 type="radio"
                 name="payment-methods"
                 id="COD"
-                :value="enumPayment.TTKLH"
+                :value="enumPayment.OFFLINE"
                 v-model="paymentMethod"
                 checked
               />
-              <!-- <img
-                src="https://hstatic.net/0/0/global/design/seller/image/payment/cod.svg?v=4"
-              /> -->
               <label for="COD">Thanh toán khi giao hàng (COD)</label>
             </div>
           </div>
@@ -199,16 +151,6 @@
         :key="index"
         :item="cart"
       />
-      <!-- <hr />
-      <label for="discount-code" class="lb-discount-code">Mã giảm giá</label>
-      <div class="form__row" style="width: 100%">
-        <div class="form__row f-bw" style="width: 60%">
-          <input type="text" id="discount-code" class="m-input discount-code" />
-        </div>
-        <div class="form__row f-bw" style="width: 35%">
-          <MButton width="100%">Sử dụng</MButton>
-        </div>
-      </div> -->
       <hr />
       <div class="total-detail">
         <div class="total-detail-left">Tạm tính</div>
@@ -225,7 +167,7 @@
       <hr />
       <div class="total-detail">
         <div class="total-detail-left">Tổng cộng</div>
-        <div class="total-detail-right">
+        <div class="total-detail-right-all">
           {{ $state.formatPrice(totalPriceProduct() + getPriceShipment()) }}
         </div>
       </div>
@@ -236,6 +178,19 @@
     @update:isShow="closePopupAddress"
     v-model="AddressReceiveDefault"
   />
+  <MPopUp
+    :isShow="isShowMPV"
+    :isIconClose="true"
+    dataTipIcon="Đóng (Esc)"
+    minHeight="max-content"
+    iconCloseClass="icon-close-big"
+    @close-pop-up="isShowMPV = false"
+  >
+    <MPvCombank
+      v-model="formAccount"
+      @submit:submitForm="checkoutOnline"
+    ></MPvCombank>
+  </MPopUp>
 </template>
 <script>
 import mixinForm from "@/mixins/mixinForm.js";
@@ -244,10 +199,15 @@ import AddressReceive from "@/components/AddressReceive.vue";
 import MCombobox from "@/components/combobox/MCombobox.vue";
 import MInput from "@/components/input/MInput.vue";
 import resources from "@/common/resource";
-import enumD from "@/common/enum";
 import CartItemCheckout from "@/components/Cart/CartItemCheckout.vue";
 import regionApi from "@/api/regionApi";
 import baseApi from "@/api/baseApi";
+import axiosClient from "@/api/axiosClient";
+import MPopUp from "@/components/pop-up/MPopUp.vue";
+import cartApi from '@/api/cartApi';
+import enumD from '@/common/enum';
+import MPvCombank from '../pvcombank/MPvCombank.vue';
+
 export default {
   name: "MCheckout",
   components: {
@@ -256,10 +216,11 @@ export default {
     MCombobox,
     MInput,
     CartItemCheckout,
+    MPvCombank,
+    MPopUp,
   },
   created: async function () {
     // eslint-disable-next-line no-debugger
-    debugger;
     this.$state.isHeaderAndFooterShow = false;
     let res = await new baseApi("Cart").getByFilter({});
     this.carts = res.Data;
@@ -281,7 +242,7 @@ export default {
       Districts: [],
       Wards: [],
       ShippingMethod: "1",
-      paymentMethod: enumD.paymentMethod.TTKLH,
+      paymentMethod: enumD.paymentMethod.OFFLINE,
       shipments: [],
       enumPayment: enumD.paymentMethod,
       folderRoutes: [
@@ -298,6 +259,9 @@ export default {
       listAddressReceive: [],
       AddressReceiveDefault: {},
       carts: [],
+      isShowMPV: false,
+      formAccount: {},
+      tempFormBody: {},
     };
   },
   methods: {
@@ -339,40 +303,98 @@ export default {
           orderDetails.push({
             Quantity: x.Quantity,
             PriceDel: x.PriceDel,
+            PriceSale: x.PriceSale,
             ProductVariantId: x.ProductVariantId,
             Discount: x.Discount,
-            ImageLink : x.Images ? x.Images[0].ImageLink: '',
-            ProductName : x.ProductName,
-            ColorName : x.ColorName,
-            SizeCode : x.SizeCode,
+            ImageLink: x.Images ? x.Images[0].ImageLink : "",
+            ProductName: x.ProductName,
+            ColorName: x.ColorName,
+            SizeNumber: x.SizeNumber,
           });
         });
         let formBody = this.formCheckout;
         formBody.OrderDetails = orderDetails;
-
-        const res = await new baseApi("Order").create(formBody);
-        if(!res.ErrorCode){
-          this.$state.tabProfile = 3;
-          this.$state.OrderId = res?.Data;
-          this.$router.push("/account/profile").then(() => {
-          window.scrollTo(0, 0);
-      });
+        if (this.paymentMethod === enumD.paymentMethod.ONLINE) {
+          this.tempFormBody = JSON.parse(JSON.stringify(formBody));
+          this.isShowMPV = true;
+        } else {
+          const res = await new baseApi("Order").create(formBody);
+          if (!res.ErrorCode) {
+            this.$state.tabProfile = 3;
+            this.$state.OrderId = res?.Data;
+            const cartNumber = await new cartApi("Cart").cartNumber();
+            this.$state.cartNumber = cartNumber?.data == 0 ? 0 : cartNumber;
+            this.$router.push("/account/profile").then(() => {
+              window.scrollTo(0, 0);
+            });
+          }
         }
+        const cartNumber = await new cartApi("Cart").cartNumber();
+        this.$state.cartNumber = cartNumber?.data == 0 ? 0 : cartNumber;
       } catch (error) {
         console.log(error);
       }
     },
+    async checkoutOnline(e) {
+      try {
+        // eslint-disable-next-line no-debugger
+        debugger
+        let data = {
+          Amount: this.totalPriceProduct() + this.getPriceShipment(),
+          CardCode: e.AccountNumber,
+        };
+        let url = `${process.env.VUE_APP_BASE_API_URL}/CreditCard`;
+        let res = await axiosClient.post(url, data);
+        if (res && res.Data) {
+          // lấy response dữ liệu thanh thoán
+          let resCheckout = JSON.parse(res.Data.Result)?.Data;
+          if (
+            resCheckout &&
+            resCheckout.ResultDesc &&
+            resCheckout.ResultDesc == "Thanh cong"
+          ) {
+
+            this.$state.addToastMessage(this,
+            resources.vi.TOAST_MESSAGE.SUCCESS("Thanh toán")
+            );
+            this.tempFormBody.OrderCode = res.Data.OrderCode;
+            this.tempFormBody.IsPaid = 1;
+
+            let resData = await new baseApi("Order").create(this.tempFormBody);
+            this.isShowMPV = false;
+            this.$state.tabProfile = 3;
+            this.$state.OrderId = resData?.Data;
+            this.$router.push("/account/profile").then(() => {
+              window.scrollTo(0, 0);
+            });
+            const cartNumber = await new cartApi("Cart").cartNumber();
+            this.$state.cartNumber = cartNumber?.data == 0 ? 0 : cartNumber;
+            return;
+          }
+          this.$state.addToastMessage(this,
+            resources.vi.TOAST_MESSAGE.ERROR("Thanh toán thất bại!")
+            );
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    },
     addProperty() {
       this.formCheckout.TotalAmount = this.totalQuantity();
-      this.formCheckout.TotalPrice = this.totalPriceProduct() + this.getPriceShipment();
+      this.formCheckout.TotalPrice =
+        this.totalPriceProduct() + this.getPriceShipment();
       this.formCheckout.PaymentMethod = this.paymentMethod;
-      const shipment= this.shipments.find((x) => x.ShipmentCode == this.ShippingMethod);
+      const shipment = this.shipments.find(
+        (x) => x.ShipmentCode == this.ShippingMethod
+      );
       this.formCheckout.ShipmentId = shipment.ShipmentId;
       this.formCheckout.PriceShip = shipment.PriceShip;
-      this.formCheckout.AddressReceiveId =this.AddressReceiveDefault.AddressReceiveId;
+      this.formCheckout.AddressReceiveId =
+        this.AddressReceiveDefault.AddressReceiveId;
       this.formCheckout.Receiver = this.AddressReceiveDefault.Receiver;
       this.formCheckout.Phone = this.AddressReceiveDefault.Phone;
-      this.formCheckout.AddressDetail = this.AddressReceiveDefault.AddressDetail;
+      this.formCheckout.AddressDetail =
+        this.AddressReceiveDefault.AddressDetail;
       this.formCheckout.Status = enumD.enumStatusOrder.ChoXacNhan;
     },
   },

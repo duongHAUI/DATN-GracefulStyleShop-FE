@@ -21,6 +21,7 @@
           <del>{{ $state.formatPrice(item.PriceSale) }}</del>
         </p>
       </div>
+      <div class="total-pro">Số lượng còn :{{item.ProVariantQuantity}}</div>
     </div>
     <div class="media-total">
       <div class="item-total-price">
@@ -48,6 +49,7 @@
 </template>
 <script>
 import cartApi from "@/api/cartApi";
+import resources from '@/common/resource';
 export default {
   props: {
     item: Object,
@@ -75,20 +77,29 @@ export default {
         console.log(error);
       }
     },
-    async quantityNumber(qty) {
+    quantityNumber(qty) {
       var number = this.quantity + qty;
-      if (number > 0 && number <= this.item.ProVariantQuantity) {
-        this.quantity = number;
-      } else {
-        return;
+      if(number > this.item.ProVariantQuantity){
+        this.$state.addToastMessage(this,
+            resources.vi.TOAST_MESSAGE.ERROR("Số lượng vượt quá số lượng có.")
+          );
+          return;
       }
-      await this.updateQuantity(number);
+      if (number > 0) {
+        this.quantity = number;
+      }
     },
-    async changeQuantity() {
+    changeQuantity() {
+       if(this.quantity > this.item.ProVariantQuantity){
+        this.$state.addToastMessage(this,
+            resources.vi.TOAST_MESSAGE.ERROR("Số lượng vượt quá số lượng có.")
+          );
+          this.quantity = 1;
+          return;
+      }
       if (this.quantity < 1 || this.quantity > 100000) {
         this.quantity = 1;
       }
-      await this.updateQuantity(this.quantity);
     },
     handleKeyDown(event) {
       if (event.key === "e") {
@@ -235,5 +246,10 @@ export default {
   -moz-appearance: none;
   -o-appearance: none;
   appearance: none;
+}
+.total-pro{
+  font-size: 13px;
+  font-weight: bold;
+  font-style: italic;
 }
 </style>

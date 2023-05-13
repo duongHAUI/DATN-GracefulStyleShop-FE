@@ -223,12 +223,25 @@ export default {
     },
     quantityNumber(qty) {
       var number = this.quantity + qty;
-      if (number > 0 && number <= this.sizeActive.ProductVariantQuantity) {
+      if(number > this.sizeActive.ProductVariantQuantity){
+        this.$state.addToastMessage(this,
+            resources.vi.TOAST_MESSAGE.ERROR("Số lượng vượt quá số lượng có.")
+          );
+          return;
+      }
+      if (number > 0) {
         this.quantity = number;
       }
     },
     changeQuantity() {
-      if (this.quantity < 1 || this.quantity > 100000 || this.quantity > this.sizeActive.ProductVariantQuantity) {
+       if(this.quantity > this.sizeActive.ProductVariantQuantity){
+        this.$state.addToastMessage(this,
+            resources.vi.TOAST_MESSAGE.ERROR("Số lượng vượt quá số lượng có.")
+          );
+          this.quantity = 1;
+          return;
+      }
+      if (this.quantity < 1 || this.quantity > 100000) {
         this.quantity = 1;
       }
     },

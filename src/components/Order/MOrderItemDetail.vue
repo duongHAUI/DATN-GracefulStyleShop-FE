@@ -129,7 +129,12 @@
     @close-pop-up="isShowWarning = false"
     width="450px"
   >
-    Bạn có chắc chắn muốn hủy đơn hàng không?
+    <div class="warnning-close-order">
+      <div class="div">Bạn có chắc chắn muốn hủy đơn hàng không?</div>
+      <div class="close-order-note">
+        <textarea v-model="cancelReason" name="" id="" rows="2"></textarea>
+      </div>
+    </div>
     <template #footer>
       <div class="warning__delete-btn">
         <div @click="isShowWarning = false">
@@ -150,6 +155,7 @@ import common from "@/common/common";
 import enumD from "@/common/enum";
 import MButton from "../button/MButton.vue";
 import MPopUpWarn from '../pop-up/MPopUpWarn.vue';
+import resources from '@/common/resource';
 export default {
   components: {
     CartItemCheckout,
@@ -166,7 +172,8 @@ export default {
     return {
       order: {},
       status: enumD.enumStatusOrder,
-      isShowWarning : false
+      isShowWarning : false,
+      cancelReason :""
     };
   },
   methods: {
@@ -232,10 +239,15 @@ export default {
     async destroyOrder(){
       try {
         this.isShowWarning = false;
-        await new orderApi().updateStatus({Status : enumD.enumStatusOrder.DaHuy , OrderId : this.OrderId});
+        await new orderApi().updateStatus({Status : enumD.enumStatusOrder.DaHuy , OrderId : this.OrderId,CancelReason : this.cancelReason});
         window.scrollTo(0, 0);
         const res = await new baseApi("Order").getById(this.OrderId);
         this.order = res;
+        if(res){
+          this.$state.addToastMessage(this,
+            resources.vi.TOAST_MESSAGE.SUCCESS("Đã hủy đơn hàng ")
+          );
+        }
       } catch (error) {
         console.log(error);
       }
@@ -263,5 +275,11 @@ export default {
 }
 ._8kMYJ3.btn-destroy{
   background-color: white;
+}
+.close-order-note textarea{
+  width: 100%;
+  border: 1px solid #908f8f;
+  outline: none;
+  padding: 8px;
 }
 </style>
