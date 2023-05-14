@@ -220,7 +220,6 @@ export default {
     MPopUp,
   },
   created: async function () {
-    // eslint-disable-next-line no-debugger
     this.$state.isHeaderAndFooterShow = false;
     let res = await new baseApi("Cart").getByFilter({});
     this.carts = res.Data;
@@ -297,6 +296,7 @@ export default {
     },
     async submitCheckout() {
       try {
+        this.$state.isMask();
         this.addProperty();
         var orderDetails = [];
         this.carts.forEach((x) => {
@@ -316,6 +316,7 @@ export default {
         formBody.OrderDetails = orderDetails;
         if (this.paymentMethod === enumD.paymentMethod.ONLINE) {
           this.tempFormBody = JSON.parse(JSON.stringify(formBody));
+          this.$state.unMask();
           this.isShowMPV = true;
         } else {
           const res = await new baseApi("Order").create(formBody);
@@ -324,6 +325,10 @@ export default {
             this.$state.OrderId = res?.Data;
             const cartNumber = await new cartApi("Cart").cartNumber();
             this.$state.cartNumber = cartNumber?.data == 0 ? 0 : cartNumber;
+            this.$state.addToastMessage(this,
+            resources.vi.TOAST_MESSAGE.SUCCESS("Thanh toán ")
+            );
+            this.$state.unMask();
             this.$router.push("/account/profile").then(() => {
               window.scrollTo(0, 0);
             });
@@ -331,14 +336,15 @@ export default {
         }
         const cartNumber = await new cartApi("Cart").cartNumber();
         this.$state.cartNumber = cartNumber?.data == 0 ? 0 : cartNumber;
+        this.$state.unMask();
       } catch (error) {
+        this.$state.unMask();
         console.log(error);
       }
     },
     async checkoutOnline(e) {
       try {
-        // eslint-disable-next-line no-debugger
-        debugger
+        this.$state.isMask();
         let data = {
           Amount: this.totalPriceProduct() + this.getPriceShipment(),
           CardCode: e.AccountNumber,
@@ -364,18 +370,21 @@ export default {
             this.isShowMPV = false;
             this.$state.tabProfile = 3;
             this.$state.OrderId = resData?.Data;
+            const cartNumber = await new cartApi("Cart").cartNumber();
+            this.$state.cartNumber = cartNumber?.data == 0 ? 0 : cartNumber;
+            this.$state.unMask();
             this.$router.push("/account/profile").then(() => {
               window.scrollTo(0, 0);
             });
-            const cartNumber = await new cartApi("Cart").cartNumber();
-            this.$state.cartNumber = cartNumber?.data == 0 ? 0 : cartNumber;
             return;
           }
           this.$state.addToastMessage(this,
             resources.vi.TOAST_MESSAGE.ERROR("Thanh toán thất bại!")
             );
+             this.$state.unMask();
         }
       } catch (e) {
+         this.$state.unMask();
         console.log(e);
       }
     },

@@ -18,7 +18,7 @@
         <div class="item-price">
           <p>
             <span>{{ $state.formatPrice(item.PriceDel) }}</span>
-            <sup v-if="item.Discount">{{ $state.formatPrice(item.PriceDel + (item.Discount*0.01*item.PriceDel)) }}</sup>
+            <sup v-if="item.Discount">{{ $state.formatPrice(item.PriceDel + ((item.IsMassDiscount ? item.MassDiscount : item.Discount)*0.01*item.PriceDel)) }}</sup>
           </p>
         </div>
       </div>

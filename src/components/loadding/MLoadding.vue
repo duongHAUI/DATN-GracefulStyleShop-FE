@@ -1,10 +1,7 @@
 <template>
   <div
     class="m-pop-up__loading"
-    :style="{
-      display: isLoadding ? 'block' : 'none',
-      position: isFixed ? 'fixed' : 'absolute',
-    }"
+    v-if="isLoadding"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -43,7 +40,6 @@ export default {
   },
   props: {
     isLoadding: Boolean,
-    isFixed: Boolean,
   },
   /**
    * Hiển thị loadding

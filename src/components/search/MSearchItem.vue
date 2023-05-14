@@ -16,7 +16,7 @@
         >
         <p class="f-initial">
           {{$state.formatPrice(item?.PriceDel)}}
-          <del> {{$state.formatPrice(item?.PriceDel)}}</del>
+          <del> {{$state.formatPrice(item?.PriceSale)}}</del>
         </p>
       </div>
     </div>

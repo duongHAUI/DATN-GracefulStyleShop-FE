@@ -26,8 +26,6 @@ export default {
   },
   methods:{
     routesNow(index){
-      // eslint-disable-next-line no-debugger
-      debugger
         return index === this.folderRoutesTest?.length - 2;
     }
   }

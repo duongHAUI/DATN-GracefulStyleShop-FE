@@ -78,7 +78,7 @@
         :settings="config.settingsProduct"
         :breakpoints="config.breakpointsProducts"
       >
-        <Slide v-for="item in config.products" :key="item">
+        <Slide v-for="item in config.productRelated" :key="item">
           <product-card :item="item" />
         </Slide>
       </Carousel>

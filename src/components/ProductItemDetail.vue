@@ -261,14 +261,13 @@ export default {
     activeSize(size) {
       this.sizeActive.SizeId = size.SizeId;
       this.sizeActive.SizeCode = size.SizeCode;
+      this.sizeActive.ProductVariantQuantity = size.ProductVariantQuantity;
     },
     async addToCart() {
       try {
         if (!this.$state.user) {
           this.$state.isShowLogin = true;
         } else {
-          // eslint-disable-next-line no-debugger
-          debugger;
           var ProductVariant = this.colorActive.Sizes.find(
             (x) => x.SizeId == this.sizeActive.SizeId
           );
@@ -282,7 +281,7 @@ export default {
             const cartNumber = await new cartApi("Cart").cartNumber();
             this.$state.cartNumber = cartNumber?.data == 0 ? 0 : cartNumber;
           }
-          this.$state.toastMessage.unshift(
+          this.$state.addToastMessage(this,
             resources.vi.TOAST_MESSAGE.SUCCESS("Thêm sản phẩm vào giỏ")
           );
         }

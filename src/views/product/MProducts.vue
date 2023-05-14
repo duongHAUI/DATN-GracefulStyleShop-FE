@@ -92,12 +92,14 @@ export default {
     typeId: async function(){
       let res = await new baseApi("Product").getByFilterDetail({
         TypeId : this.typeId,
+        BrandId : this.brandId,
       });
       this.products = res.Data;
     },
     brandId: async function(){
       let res = await new baseApi("Product").getByFilterDetail({
         BrandId : this.brandId,
+        TypeId : this.typeId,
       });
       this.products = res.Data;
     }
@@ -113,6 +115,8 @@ export default {
 .list-products {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 0 24px;
 }
 .btn-add-product {
   text-align: center;

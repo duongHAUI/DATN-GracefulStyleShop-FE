@@ -11,41 +11,41 @@
     <ul class="progressbar">
       <div class="step">
         <div class="step-icon" :class="{ active: setActiveStep(1) }">
-          <div><i class="fa-solid fa-receipt"></i></div>
+          <div><i class="fa-solid fa-paper-plane"></i></div>
         </div>
         <div class="step-title">Chờ xác nhận</div>
         <div class="hr-step" :class="{ active: setActiveHrProcess(1) }"></div>
       </div>
       <div class="step">
         <div class="step-icon" :class="{ active: setActiveStep(2) }">
-          <div><i class="fa-solid fa-receipt"></i></div>
+          <div><i class="fa-solid fa-square-check"></i></div>
         </div>
         <div class="step-title">Đã xác nhận</div>
         <div class="hr-step" :class="{ active: setActiveHrProcess(2) }"></div>
       </div>
       <div class="step">
         <div class="step-icon" :class="{ active: setActiveStep(3) }">
-          <div><i class="fa-solid fa-receipt"></i></div>
+          <div><i class="fa-solid fa-truck-fast"></i></div>
         </div>
         <div class="step-title">Đang giao</div>
         <div class="hr-step" :class="{ active: setActiveHrProcess(3) }"></div>
       </div>
       <div class="step">
         <div class="step-icon" :class="{ active: setActiveStep(4) }">
-          <div><i class="fa-solid fa-receipt"></i></div>
+          <div><i class="fa-solid fa-download"></i></div>
         </div>
         <div class="step-title">Đã nhận hàng</div>
         <div class="hr-step" :class="{ active: setActiveHrProcess(4) }"></div>
       </div>
       <div class="step" v-if="order.Status == status.DaHuy">
         <div class="step-icon" :class="{ active: setActiveStep(5) }">
-          <div><i class="fa-solid fa-receipt"></i></div>
+          <div><i class="fa-solid fa-rectangle-xmark"></i></div>
         </div>
         <div class="step-title">Đã hủy</div>
       </div>
       <div class="step" v-if="order.Status != 6">
         <div class="step-icon" :class="{ active: setActiveStep(6) }">
-          <div><i class="fa-solid fa-receipt"></i></div>
+          <div><i class="fa-solid fa-thumbs-up"></i></div>
         </div>
         <div class="step-title">Hoàn thành</div>
       </div>
@@ -58,6 +58,12 @@
         <div>{{ order.Phone }}</div>
         <div>
           {{ order.AddressDetail }}
+        </div>
+        <div v-if="order.Status == 6" :style="{fontWeight: 'bold'}">
+          Lí do hủy : {{ order.CancelReason }}
+        </div>
+        <div v-if="order.Note" :style="{fontWeight: 'bold'}">
+          Lưu ý : {{ order.Note }}
         </div>
       </div>
       <div class="info-product">

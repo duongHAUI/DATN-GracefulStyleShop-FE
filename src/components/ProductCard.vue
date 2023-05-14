@@ -14,21 +14,14 @@
     <div class="p-card-content" @click="addToCart">
       <div class="title truncate_two-row">{{ item?.ProductName }}</div>
       <div class="proloop-price">
-        <div class="price">{{ $state.formatPrice(item.PriceSale) }}</div>
-        <div class="price-del">{{ $state.formatPrice(item.PriceDel) }}</div>
+        <div class="price">{{$state.formatPrice(item.PriceDel)}}</div>
+        <div class="price-del" v-if="item.Discount > 0">{{ $state.formatPrice(item.PriceSale)}}</div>
       </div>
       <div class="discount" v-if="item.Discount">
-        <div class="discount-number">{{ item.Discount }}%</div>
+        <div class="discount-number">{{ item.IsMassDiscount ? item.MassDiscount : item.Discount }}%</div>
         <div class="discount-title">Giảm</div>
       </div>
-      <div class="p-color" v-if="colorType">
-        <div
-          class="p-color-item"
-          v-for="(index, colorEnum) in item.colorEnum"
-          :key="index"
-          :style="{ backgroundColor: getColor(colorEnum) }"
-        ></div>
-      </div>
+      <div class="discount-sold">Đã bán : {{item.Sold}}</div>
     </div>
   </div>
 </template>

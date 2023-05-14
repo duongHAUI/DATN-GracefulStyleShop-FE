@@ -43,8 +43,6 @@ export default {
     hidden : Boolean,
   },
   data() {
-    // eslint-disable-next-line no-debugger
-    debugger
     const user = {
       FullName : this.$state.user.FullName,
       Phone : this.$state.user.Phone,
@@ -57,8 +55,6 @@ export default {
   methods:{
     async updateUser(){
       try {
-        // eslint-disable-next-line no-debugger
-        debugger
         const res = await new baseApi("Customer").update(this.$state.user.CustomerId,this.user);
         if(res.Data){
           this.$state.setUser(res.Data);

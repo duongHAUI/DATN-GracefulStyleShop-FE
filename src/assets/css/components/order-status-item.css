@@ -66,9 +66,12 @@
 }
 .step-icon div{
     font-size: 20px;
-    color: #2dc258;
+    color: #393b3a;
     background-color: white;
     z-index: 1;
+}
+.step-icon.active div{
+    color: #2dc258;
 }
 .DM1xQK{
     height: 0.1875rem;
