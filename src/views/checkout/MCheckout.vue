@@ -379,7 +379,7 @@ export default {
             return;
           }
           this.$state.addToastMessage(this,
-            resources.vi.TOAST_MESSAGE.ERROR("Thanh toán thất bại!")
+            resources.vi.TOAST_MESSAGE.ERROR("Tài khoản hoặc mật khẩu không chính xác!")
             );
              this.$state.unMask();
         }

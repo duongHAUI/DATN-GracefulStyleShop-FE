@@ -13,7 +13,7 @@
         :breakpoints="config.breakpointsProducts"
       >
         <Slide v-for="item,index in config.productRelated" :key="index">
-          <product-card :item="item" />
+          <product-card @detail="refreshDetail" :item="item" />
         </Slide>
       </Carousel>
     </div>
@@ -45,7 +45,7 @@ export default {
         TypeId : this.product.TypeId,
         BrandId : this.product.BrandId
       });
-      this.config.productRelated = res.Data;
+      this.config.productRelated = res.Data.filter(x => x.ProductId != this.product.ProductId);
       this.folderRoutes[1].title = this.product ? this.product.ProductName : "";
     }else{
       this.$router.push("/");
@@ -58,7 +58,7 @@ export default {
       folderRoutes :[
         {
           url: "/",
-          title: "Trang chủ ",
+          title: "Trang chủ / ",
         },
         {
           url: "",
@@ -66,6 +66,13 @@ export default {
         },
       ],
       config : new config()
+    }
+  },
+  methods:{
+    refreshDetail(id){
+      // eslint-disable-next-line no-debugger
+      debugger
+      window.location.replace("/products/"+id);
     }
   }
 };

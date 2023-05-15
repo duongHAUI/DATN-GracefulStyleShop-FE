@@ -54,7 +54,7 @@ class config {
     this.settingsProduct = {
         itemsToShow: 5,
         snapAlign: "start",
-        autoplay : 3000,
+        autoplay : 2000,
         touchDrag : false,
         pauseAutoplayOnHover : true,
     };

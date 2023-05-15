@@ -2,7 +2,7 @@
     <div class="pv-main">
         <div class="pv-bank-header pv-flex">
             <div class="pv-bank-logo"></div>
-            <div class="pv-bank-text">NGÂN HÀNG TRỰC TUYẾN</div>
+            <div class="pv-bank-text">THANH TOÁN TRỰC TUYẾN</div>
         </div>
         <div class="pv-form-login">
             <div class="pv-form-header pv-flex">
@@ -18,7 +18,7 @@
                     <div class="pv-input-icon"><i class="fa-solid fa-lock"></i></div>
                     <input type="password"  v-model="formAccount.Password" class="pv-input" placeholder="Mật khẩu">
                 </div>
-                <button class="pv-form-button-login" @click="checkoutCredit">Đăng nhập</button>
+                <button class="pv-form-button-login" @click="checkoutCredit">Thanh toán</button>
             </div>
         </div>
     </div>
@@ -57,10 +57,9 @@
     width: 750px;
     margin: 0 auto;
     padding-top: 30px;
-    justify-content: space-between;
 }
 .pv-bank-logo{
-    background-image: url(../../assets/img/pngwing.com.png);
+    background-image: url(../../assets/img/logo-viviet.png);
     width: 200px;
     height: 100px;
     background-size: contain;

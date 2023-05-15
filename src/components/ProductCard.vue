@@ -81,6 +81,9 @@ export default {
       return common.getColor(enumColor);
     },
     addToCart() {
+      // eslint-disable-next-line no-debugger
+      debugger
+      this.$emit("detail",this.item.ProductId);
       this.$router.push("/products/" + this.item.ProductId).then(() => {
         window.scrollTo(0, 0);
       });

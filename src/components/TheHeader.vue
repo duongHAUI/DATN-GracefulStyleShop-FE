@@ -7,7 +7,6 @@
       <li class="menu-item"><a href="/">Trang chủ</a></li>
       <li class="menu-item"><a href="/products">Sản phẩm</a></li>
       <li class="menu-item">Giảm giá</li>
-      <li class="menu-item">Tin tức</li>
     </div>
     <div class="action">
       <div class="search" @click="$state.isSearch = true">
@@ -174,7 +173,7 @@ export default {
       this.$router.push("/cart");
     },
     goToOrder() {
-      this.isShowCartView = false;
+      this.isShowSettingUser = false;
       this.$state.tabProfile = 3;
       this.$router.push("/account/profile").then(() => {
         window.scrollTo(0, 0);

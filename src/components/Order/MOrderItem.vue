@@ -29,20 +29,15 @@
         </div>
       </div>
     </div>
-    <div class="bottom">
-      <m-button>Đánh giá</m-button>
-    </div>
   </div>
 </template>
 <script>
 import common from '@/common/common';
-import MButton from "../button/MButton.vue";
 export default {
   props: {
     item: Object,
   },
   components: {
-    MButton,
   },
   data() {
     return {};

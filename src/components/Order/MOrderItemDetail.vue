@@ -274,6 +274,12 @@ export default {
 .header-info span {
   font-size: 16px;
   font-weight: bold;
+  color: black;
+}
+.header-info {
+  font-size: 16px;
+  font-weight: bold;
+  color: #f93b3b;
 }
 .btn-close {
   display: flex;

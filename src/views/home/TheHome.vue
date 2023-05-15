@@ -59,7 +59,7 @@
       <img src="../../assets/img/banner/banner-1.webp" alt="" />
     </div>
     <div class="list-product">
-      <div class="list-product-title">Sản phẩm mới nhất</div>
+      <div class="list-product-title">Sản phẩm bán chạy</div>
       <Carousel
         :settings="config.settingsProduct"
         :breakpoints="config.breakpointsProducts"
@@ -73,7 +73,7 @@
       <img src="../../assets/img/banner/banner-1.webp" alt="" />
     </div>
     <div class="list-product">
-      <div class="list-product-title">Sản phẩm bán chạy</div>
+      <div class="list-product-title">Sản phẩm mới nhất</div>
       <Carousel
         :settings="config.settingsProduct"
         :breakpoints="config.breakpointsProducts"

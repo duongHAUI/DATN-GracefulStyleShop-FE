@@ -52,7 +52,7 @@
       </div>
       <div class="product-color">
         <div class="product-color-title">
-          Màu sắc: <br /><strong :style="{ color: colorActive.ColorCode }">
+          Màu sắc: <br /><strong >
             {{ colorActive.ColorName }}
           </strong>
         </div>
@@ -259,9 +259,7 @@ export default {
       this.sizeActive = color.Sizes[0] ? color.Sizes[0] : null;
     },
     activeSize(size) {
-      this.sizeActive.SizeId = size.SizeId;
-      this.sizeActive.SizeCode = size.SizeCode;
-      this.sizeActive.ProductVariantQuantity = size.ProductVariantQuantity;
+      this.sizeActive = this.colorActive.Sizes.find(x => x.SizeId == size.SizeId);
     },
     async addToCart() {
       try {

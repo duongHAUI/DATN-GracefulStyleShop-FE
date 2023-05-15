@@ -77,7 +77,7 @@ export default {
         console.log(error);
       }
     },
-    quantityNumber(qty) {
+    async quantityNumber(qty) {
       var number = this.quantity + qty;
       if(number > this.item.ProVariantQuantity){
         this.$state.addToastMessage(this,
@@ -88,8 +88,9 @@ export default {
       if (number > 0) {
         this.quantity = number;
       }
+      await this.updateQuantity(this.quantity);
     },
-    changeQuantity() {
+    async changeQuantity() {
        if(this.quantity > this.item.ProVariantQuantity){
         this.$state.addToastMessage(this,
             resources.vi.TOAST_MESSAGE.ERROR("Số lượng vượt quá số lượng có.")
@@ -100,6 +101,7 @@ export default {
       if (this.quantity < 1 || this.quantity > 100000) {
         this.quantity = 1;
       }
+      await this.updateQuantity(this.quantity);
     },
     handleKeyDown(event) {
       if (event.key === "e") {

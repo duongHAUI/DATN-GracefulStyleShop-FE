@@ -153,8 +153,8 @@ const enumD = {
       vote : 18,
     },
     paymentMethod :{
-      TTKLH : 1 , // thanh toán khi lấy hàng,
-      ONLINE : 2, //Thẻ ATM 
+      TTKLH : 0 , // thanh toán khi lấy hàng,
+      ONLINE : 1, //Thẻ ATM 
     },
     filterProductType:{
       selling : 1, // Sản phẩm bán chạy
